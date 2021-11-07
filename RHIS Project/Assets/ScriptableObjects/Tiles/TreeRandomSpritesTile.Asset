@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e5b117a6acbaa448b97d94bf09a2fd, type: 3}
+  m_Name: TreeRandomSpritesTile
+  m_EditorClassIdentifier: 
+  m_Sprite: {fileID: 21300000, guid: 21cd5111a6c4246feb00c2cfa665341d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Transform:
+    e00: 1
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 1
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+  m_InstancedGameObject: {fileID: 0}
+  m_Flags: 1
+  m_ColliderType: 1
+  sprites:
+  - {fileID: 21300000, guid: a1063dcf6a5994cc5ae104ceffa216ad, type: 3}
+  - {fileID: 21300000, guid: 3bfe7999e602d47a9bfe44f7a0d48349, type: 3}
+  - {fileID: 21300000, guid: 480aef0693c9a452e81f06cc76830e3d, type: 3}
+  - {fileID: 21300000, guid: d5af28b2f98ab4259b2015c1ad9928a3, type: 3}
+  - {fileID: 21300000, guid: 51e72e14016164c99a24bb013a1b7b21, type: 3}
+  - {fileID: 21300000, guid: 39c52c03347f944219e41a54cbc5578b, type: 3}
+  - {fileID: 21300000, guid: 88998d4e7acaa4f8f9d3dbbf7dbad30c, type: 3}
