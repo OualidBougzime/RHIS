@@ -9,6 +9,7 @@ TagManager:
   - StartRoom
   - TreasureRoom
   - BattleRoom
+  - Water
   layers:
   - Default
   - TransparentFX
