@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2e5b117a6acbaa448b97d94bf09a2fd, type: 3}
-  m_Name: deadTreeRandomSpritesTile
+  m_Name: DeadTreeRandomSpritesTile
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: df285f69fecef4a0b9c57585276a099d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 58865c1db45b243c281c8022a175b87c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -35,19 +35,17 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 1
   sprites:
-  - {fileID: 21300000, guid: 7eac1eeec02f84230bd2d1dc8a85cfe8, type: 3}
-  - {fileID: 21300000, guid: ff95326f338b8499c812361ba1c684ba, type: 3}
-  - {fileID: 21300000, guid: fde2728cca89440a39853bd53f1d1a75, type: 3}
-  - {fileID: 21300000, guid: dae28aa10dca542fca8a82a0ec1e21ac, type: 3}
-  - {fileID: 21300000, guid: a80f282cbe2394c9d8b67b80ff89064a, type: 3}
-  - {fileID: 21300000, guid: 8423e3469c0174ac2844e9693003a0d8, type: 3}
-  - {fileID: 21300000, guid: 7f74805253aaf47fd96455643dfeb425, type: 3}
-  - {fileID: 21300000, guid: 0e542228b0dfb4b6099b2454035982f3, type: 3}
-  - {fileID: 21300000, guid: 7e23e7c58461546ff9b5799364311816, type: 3}
-  - {fileID: 21300000, guid: 58865c1db45b243c281c8022a175b87c, type: 3}
-  - {fileID: 21300000, guid: c6e187b88a21443a181329ded3c1018e, type: 3}
   - {fileID: 21300000, guid: 80465cbde8d6044288e4f3136193ce0e, type: 3}
-  - {fileID: 21300000, guid: df285f69fecef4a0b9c57585276a099d, type: 3}
-  - {fileID: 21300000, guid: bf71a6f4bfc534c668df1816cb5f4245, type: 3}
-  - {fileID: 21300000, guid: 03e881e0667d148c988446dbdb52f1d7, type: 3}
-  - {fileID: 21300000, guid: 9198aa396c8144fe7b0d8e557ecd533c, type: 3}
+  - {fileID: 21300000, guid: c6e187b88a21443a181329ded3c1018e, type: 3}
+  - {fileID: 21300000, guid: 58865c1db45b243c281c8022a175b87c, type: 3}
+  - {fileID: 21300000, guid: 7e23e7c58461546ff9b5799364311816, type: 3}
+  - {fileID: 21300000, guid: 0e542228b0dfb4b6099b2454035982f3, type: 3}
+  - {fileID: 21300000, guid: 7f74805253aaf47fd96455643dfeb425, type: 3}
+  - {fileID: 21300000, guid: 8423e3469c0174ac2844e9693003a0d8, type: 3}
+  - {fileID: 21300000, guid: a80f282cbe2394c9d8b67b80ff89064a, type: 3}
+  - {fileID: 21300000, guid: dae28aa10dca542fca8a82a0ec1e21ac, type: 3}
+  - {fileID: 21300000, guid: fde2728cca89440a39853bd53f1d1a75, type: 3}
+  - {fileID: 21300000, guid: ff95326f338b8499c812361ba1c684ba, type: 3}
+  - {fileID: 21300000, guid: 7eac1eeec02f84230bd2d1dc8a85cfe8, type: 3}
+  isSpriteLocked: 1
+  chanceToSpawn: 54
