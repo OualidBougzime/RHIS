@@ -32,4 +32,9 @@ public class SetTiles : MonoBehaviour
             tile.unlockSprite();
         }
     }
+
+    public RandomSpritesTile getRandomScriptableTile()
+    {
+        return scriptableTiles[Random.Range(0, scriptableTiles.Length)];
+    }
 }

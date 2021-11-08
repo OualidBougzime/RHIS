@@ -19,7 +19,7 @@ public class InstanciateRoom : MonoBehaviour
     private List<GameObject> treasureRooms = new();
     [SerializeField] private int battleRoom = 10;
     private List<GameObject> battleRooms = new();
-    private enum e
+    private enum E
     {
         exitRoom = -1,
         bossRoom = -2,
@@ -29,21 +29,64 @@ public class InstanciateRoom : MonoBehaviour
     }
 
     [Header("Rule Sprite")]
-    [SerializeField] private RuleTile water;
-    [SerializeField] private RuleTile path;
+    [SerializeField] private IsometricRuleTile water;
+    [SerializeField] private IsometricRuleTile path;
+
+    [Header("Stage")]
+    [SerializeField] private GameObject stage;
+    private GameObject myStage;
+    private Tilemap groundStageTilemap;
+    private Tilemap obstaclesSatgeTilemap;
+
 
 
 
     void Start()
     {
         nbrRoom = treasureRoom + bossRoom + exitRoom + battleRoom + startRoom;
-        SetListOfPos(GetSizeMax());
+        Vector3Int sizeMax = GetSizeMax(rooms);
+        SetListOfPos(sizeMax);
+        CreateStage(sizeMax);
         InstanciateRooms();
 
         for (int i = 0; i < nbrRoom; ++i)
         {
-            GameObject room = CreateRoom();
+            GameObject room = CreateRoom(sizeMax);
             RandomDestroyTilesFromRoom(room);
+        }
+    }
+
+    private void CreateStage(Vector3Int size)
+    {
+        myStage = Instantiate(stage);
+        Tilemap[] tilemaps = myStage.GetComponentsInChildren<Tilemap>();
+        foreach (Tilemap tilemap in tilemaps)
+        {
+            if (tilemap.tag == "Ground")
+            {
+                groundStageTilemap = tilemap;
+                groundStageTilemap.size = size * nbrRoom;
+                groundStageTilemap.origin = new Vector3Int(-size.x * nbrRoom / 4, - size.x * nbrRoom / 2);
+                fillTilemap(groundStageTilemap);
+            }
+            else if (tilemap.tag == "Obstacles")
+            {
+                obstaclesSatgeTilemap = tilemap;
+                obstaclesSatgeTilemap.size = size * nbrRoom;
+                obstaclesSatgeTilemap.origin = new Vector3Int(-size.x * nbrRoom / 4, -size.x * nbrRoom / 2);
+                fillTilemap(obstaclesSatgeTilemap);
+            }
+        }
+    }
+
+    private void fillTilemap(Tilemap tilemap)
+    {
+        for (int i = tilemap.origin.x; i < tilemap.origin.x + tilemap.size.x; ++i)
+        {
+            for (int j = tilemap.origin.y; j < tilemap.origin.y + tilemap.size.y; ++j)
+            {
+                tilemap.SetTile(new Vector3Int(i, j), tilemap.GetComponent<SetTiles>().getRandomScriptableTile());
+            }
         }
     }
 
@@ -84,29 +127,45 @@ public class InstanciateRoom : MonoBehaviour
         }
     }
 
-    private Vector3Int GetSizeMax()
+    private Vector3Int GetSizeMax(GameObject[] rooms)
     {
         Vector3Int sizeMax = new();
+        Vector3Int size = new();
         foreach (GameObject room in rooms)
         {
-            Tilemap[] tilemaps = room.GetComponentsInChildren<Tilemap>();
-            foreach (Tilemap tilemap in tilemaps)
+            size = GetSizeMax(room);
+            if (sizeMax.x < size.x)
             {
-                tilemap.CompressBounds();
-                if (sizeMax.x < tilemap.size.x)
-                {
-                    sizeMax.x = tilemap.size.x;
-                }
-                if (sizeMax.y < tilemap.size.y)
-                {
-                    sizeMax.y = tilemap.size.y;
-                }
+                sizeMax.x = size.x;
+            }
+            if (sizeMax.y < size.y)
+            {
+                sizeMax.y = size.y;
             }
         }
         return sizeMax;
     }
 
-    private GameObject CreateRoom()
+    private Vector3Int GetSizeMax(GameObject room)
+    {
+        Vector3Int sizeMax = new();
+        Tilemap[] tilemaps = room.GetComponentsInChildren<Tilemap>();
+        foreach (Tilemap tilemap in tilemaps)
+        {
+            tilemap.CompressBounds();
+            if (sizeMax.x < tilemap.size.x)
+            {
+                sizeMax.x = tilemap.size.x;
+            }
+            if (sizeMax.y < tilemap.size.y)
+            {
+                sizeMax.y = tilemap.size.y;
+            }
+        }
+        return sizeMax;
+    }
+
+    private GameObject CreateRoom(Vector3Int sizeMax)
     {
         GameObject room = chooseRoom();
 
@@ -115,7 +174,15 @@ public class InstanciateRoom : MonoBehaviour
         
         deletPos(pos, room);
 
-        return Instantiate(room, listOfPos[pos.x,pos.y], Quaternion.identity);
+        return Instantiate(room, listOfPos[pos.x,pos.y] + GetRandPos(sizeMax,room), Quaternion.identity);
+    }
+
+    private Vector3Int GetRandPos(Vector3Int sizeMax, GameObject room)
+    {
+        Vector3Int size = GetSizeMax(room);
+        int diffX = sizeMax.x - size.x;
+        int diffY = sizeMax.y - size.y;
+        return new Vector3Int(Random.Range(-diffX / 2, diffX / 2), Random.Range(-diffY / 2, diffY / 2));
     }
 
     private void deletPos(Vector2Int pos, GameObject room)
@@ -124,19 +191,19 @@ public class InstanciateRoom : MonoBehaviour
         switch(room.tag)
         {
             case "ExitRoom":
-                z = ((int)e.exitRoom);
+                z = ((int)E.exitRoom);
                 break;
             case "BossRoom":
-                z = ((int)e.bossRoom);
+                z = ((int)E.bossRoom);
                 break;
             case "StartRoom":
-                z = ((int)e.startRoom);
+                z = ((int)E.startRoom);
                 break;
             case "TreasureRoom":
-                z = ((int)e.treasureRoom);
+                z = ((int)E.treasureRoom);
                 break;
             default:
-                z = ((int)e.battleRoom);
+                z = ((int)E.battleRoom);
                 break;
         }
         listOfPos[pos.x, pos.y].z = z;
@@ -158,23 +225,64 @@ public class InstanciateRoom : MonoBehaviour
         Tilemap[] tilemaps = room.GetComponentsInChildren<Tilemap>();
         foreach (Tilemap tilemap in tilemaps)
         {
-            print(tilemap.tag);
-            if (tilemap.tag != "Water")
+            DestroyTilesFromTilemap(tilemap, room);
+            if (tilemap.tag == "Water")
             {
-                RandomDestroyTilesFromTilemap(tilemap);
+                placeTile(tilemap,water);
+            }
+            else if (tilemap.tag == "Path")
+            {
+                placeTile(tilemap,path);
             }
         }
     }
 
-    private static void RandomDestroyTilesFromTilemap(Tilemap tilemap)
+    private void placeTile(Tilemap tilemap, IsometricRuleTile rule)
     {
         for (int x = tilemap.origin.x; x < tilemap.origin.x + tilemap.size.x; ++x)
         {
             for (int y = tilemap.origin.y; y < tilemap.origin.y + tilemap.size.y; ++y)
             {
                 Vector3Int pos = new(x, y);
-                RandomDestroyTile(tilemap, pos);
+                if (tilemap.HasTile(pos))
+                {
+                    tilemap.SetTile(pos, rule);
+                }
             }
+        }
+    }
+
+    private void DestroyTilesFromTilemap(Tilemap tilemap, GameObject room)
+    {
+        Vector3Int stagePos;
+        Vector3 roomPos = room.GetComponent<Transform>().position;
+        for (int x = tilemap.origin.x; x < tilemap.origin.x + tilemap.size.x; ++x)
+        {
+            for (int y = tilemap.origin.y; y < tilemap.origin.y + tilemap.size.y; ++y)
+            {
+                Vector3Int pos = new(x, y);
+                RandomDestroyTile(tilemap, pos);
+                stagePos = PosToStagePos(pos, roomPos);
+                DestroyStage(tilemap, pos, stagePos);
+            }
+        }
+    }
+
+    private Vector3Int PosToStagePos(Vector3Int pos, Vector3 roomPos)
+    {
+        int roomPosX = (int)roomPos.x;
+        int roomPosY = 2*(int)roomPos.y;
+        int stagePosX = roomPosX + roomPosY;
+        int stagePosY = -roomPosX + roomPosY;
+        return new Vector3Int(stagePosX, stagePosY)+pos;
+    }
+
+    private void DestroyStage(Tilemap tilemap, Vector3Int pos, Vector3Int stagePos)
+    {
+        if (tilemap.HasTile(pos))
+        {
+            groundStageTilemap.SetTile(stagePos, null);
+            obstaclesSatgeTilemap.SetTile(stagePos, null);
         }
     }
 
@@ -189,7 +297,7 @@ public class InstanciateRoom : MonoBehaviour
         }
     }
 
-    GameObject chooseRoom()
+    private GameObject chooseRoom()
     {
         if (exitRoom > 0)
         {

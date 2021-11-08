@@ -10,6 +10,9 @@ TagManager:
   - TreasureRoom
   - BattleRoom
   - Water
+  - Ground
+  - Obstacles
+  - Path
   layers:
   - Default
   - TransparentFX
