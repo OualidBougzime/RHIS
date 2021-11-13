@@ -16,17 +16,17 @@ public class Deplacement : MonoBehaviour
     void Update()
     {
     	if(Input.GetKey(KeyCode.Q)){
-    		rigidbody2D.velocity = new Vector2(-1, rigidbody2D.velocity.y);
+    		rigidbody2D.velocity = new Vector2(-2, rigidbody2D.velocity.y);
     	}
     	if(Input.GetKey(KeyCode.D)){
-    		rigidbody2D.velocity = new Vector2(1, rigidbody2D.velocity.y);
+    		rigidbody2D.velocity = new Vector2(2, rigidbody2D.velocity.y);
     	}
 
     	if(Input.GetKey(KeyCode.Z)){
-    		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 1);
+    		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 4);
     	}
     	if(Input.GetKey(KeyCode.S)){
-    		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -1);
+    		rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -2);
     	}
     	if(Input.GetKey(KeyCode.Space)){
     		rigidbody2D.velocity = new Vector2(5, rigidbody2D.velocity.y);
