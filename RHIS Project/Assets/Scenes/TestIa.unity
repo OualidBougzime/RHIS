@@ -467,6 +467,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 385051d90a3ab43f2ac70a900cffe6a3, type: 2}
+    - target: {fileID: -7484917113062495659, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2864008143567775176, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
+      propertyPath: Projectile
+      value: 
+      objectReference: {fileID: 3273783236791565369, guid: 12cb48f2517d6704a8d2403981bbc5e0, type: 3}
     - target: {fileID: 265488551001459799, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
       propertyPath: m_Name
       value: Rhis
