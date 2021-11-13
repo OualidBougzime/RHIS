@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+	public GameObject Projectile;
+	public int Force;
     private Rigidbody rigidbody;
     private int vitesse = 20;
     private int direction;
@@ -92,6 +93,15 @@ public class PlayerController : MonoBehaviour
     	}
     	if(Input.GetKey(KeyCode.Space)){
              dash();
+    	}
+
+    	if(Input.GetButtonDown("Fire1")){
+    		//GetComponent<AudioSource>().PlayOneShot(SoundTir);
+    		GameObject Bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
+    		transform.position = transform.position + new Vector3(0, direction * Time.deltaTime/20 * Force, 0);
+    		//Bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.right) * Force;
+    		//transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * Force, Space.World);
+    		Destroy(Bullet, 2f);
     	}
 
 
