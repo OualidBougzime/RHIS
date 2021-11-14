@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IdlingAnimation
+  m_Name: DashingAnimation
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,9 +20,15 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: d19c0a132135bfb4680ca6dabe0173b6, type: 3}
+      value: {fileID: 21300000, guid: 917b1a3dbe896354e84e5e03f06c90c4, type: 3}
     - time: 0.016666668
-      value: {fileID: 21300000, guid: 1ab42de86146dc34f9505cd5d4e30e90, type: 3}
+      value: {fileID: 21300000, guid: 3f9ad93b84fdc4a40bd98375d3093e3e, type: 3}
+    - time: 0.033333335
+      value: {fileID: 21300000, guid: ff016dbbb6c19e640ab53a7b5a2ddc1f, type: 3}
+    - time: 0.05
+      value: {fileID: 21300000, guid: 302eafba3ecf76248b2610b69cfea0ca, type: 3}
+    - time: 0.06666667
+      value: {fileID: 21300000, guid: 689c54299d3b592469f8df5d1bb172ae, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -42,14 +48,17 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: d19c0a132135bfb4680ca6dabe0173b6, type: 3}
-    - {fileID: 21300000, guid: 1ab42de86146dc34f9505cd5d4e30e90, type: 3}
+    - {fileID: 21300000, guid: 917b1a3dbe896354e84e5e03f06c90c4, type: 3}
+    - {fileID: 21300000, guid: 3f9ad93b84fdc4a40bd98375d3093e3e, type: 3}
+    - {fileID: 21300000, guid: ff016dbbb6c19e640ab53a7b5a2ddc1f, type: 3}
+    - {fileID: 21300000, guid: 302eafba3ecf76248b2610b69cfea0ca, type: 3}
+    - {fileID: 21300000, guid: 689c54299d3b592469f8df5d1bb172ae, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.033333335
+    m_StopTime: 0.083333336
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

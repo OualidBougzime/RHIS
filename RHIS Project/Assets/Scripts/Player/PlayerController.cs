@@ -8,10 +8,14 @@ public class PlayerController : MonoBehaviour
 	public int Force;
     private Rigidbody rigidbody;
     private int vitesse = 20;
-    private int direction;
+    private static int direction;
     private static char key;
     private int rotation;
     Vector3 rotationVector;
+	public Animator anim;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     void goLeft(){
     	key = 'Q';
+		anim.SetTrigger("run");
     	direction = -1;
     	rotation = -140;
         rotationVector.y = rotation;
@@ -31,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
     void goRight(){
     	key = 'D';
+		anim.SetTrigger("run");
     	direction = 1;
     	rotation = 0;
         rotationVector.y = rotation;
@@ -40,17 +46,20 @@ public class PlayerController : MonoBehaviour
 
     void goUp(){
     	key = 'Z';
+		anim.SetTrigger("run");
         direction = 1;
     	transform.position = transform.position + new Vector3(0, vitesse * direction * Time.deltaTime/20, 0);     	
     }
 
     void goDown(){
     	key = 'S';
+		anim.SetTrigger("run");
         direction = -1;
     	transform.position = transform.position + new Vector3(0, vitesse * direction * Time.deltaTime/20, 0);     	
     }
 
     void dash(){
+		anim.SetTrigger("dash");
     	var vitesseDash = 50;
     	if(key == 'Q'){
     		direction = -5;
@@ -74,37 +83,50 @@ public class PlayerController : MonoBehaviour
     	
     }
 
+	void idle() 
+	{
+		anim.SetTrigger("idle");	
+	}
+
+	void fire()
+	{
+		anim.SetTrigger("fire");
+		//GetComponent<AudioSource>().PlayOneShot(SoundTir);
+		GameObject bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
+		bullet.transform.position = bullet.transform.position + new Vector3(1,1, 1);
+		//Bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.right) * Force;
+		//transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * Force, Space.World);
+		Destroy(bullet, 2f);
+	}
+
 
     // Update is called once per frame
     void Update()
     {
-    	if(Input.GetKey(KeyCode.Q)){
+    	if(Input.anyKey){
+			if(Input.GetKey(KeyCode.Q)){
     		goLeft();
-    	}
-    	if(Input.GetKey(KeyCode.D)){
-            goRight();
-    	}
+    		}
+			if(Input.GetKey(KeyCode.D)){
+				goRight();
+			}
 
-    	if(Input.GetKey(KeyCode.Z)){
-            goUp();
+			if(Input.GetKey(KeyCode.Z)){
+				goUp();
+			}
+			if(Input.GetKey(KeyCode.S)){
+				goDown();
+			}
+			if(Input.GetKey(KeyCode.Space)){
+				dash();
+			}
+			if(Input.GetButtonDown("Fire1")){
+				fire();
     	}
-    	if(Input.GetKey(KeyCode.S)){
-    		goDown();
-    	}
-    	if(Input.GetKey(KeyCode.Space)){
-             dash();
-    	}
-
-    	if(Input.GetButtonDown("Fire1")){
-    		//GetComponent<AudioSource>().PlayOneShot(SoundTir);
-    		GameObject Bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
-    		transform.position = transform.position + new Vector3(0, direction * Time.deltaTime/20 * Force, 0);
-    		//Bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.right) * Force;
-    		//transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * Force, Space.World);
-    		Destroy(Bullet, 2f);
-    	}
-
-
+		}else
+		{
+			idle();
+		}
         
     }
 }
