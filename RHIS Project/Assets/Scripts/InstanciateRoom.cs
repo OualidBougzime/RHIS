@@ -174,7 +174,11 @@ public class InstanciateRoom : MonoBehaviour
         
         deletPos(pos, room);
 
+<<<<<<< HEAD
         return Instantiate(room, listOfPos[pos.x,pos.y] + GetRandPos(sizeMax,room), Quaternion.identity);
+=======
+return Instantiate(room, new Vector3Int(listOfPos[pos.x,pos.y].x, listOfPos[pos.x, pos.y].y) + GetRandPos(sizeMax,room), Quaternion.identity);
+>>>>>>> 47bf4351ceff02577d33935572c35adb2cc32d90
     }
 
     private Vector3Int GetRandPos(Vector3Int sizeMax, GameObject room)
