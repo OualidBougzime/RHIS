@@ -7,6 +7,8 @@ public class InstanciateRoom : MonoBehaviour
 {
     [Header("Room")]
     [SerializeField] private GameObject[] rooms;
+    [SerializeField] [Range(0.5f, 5)] private float xSpacing = 1;
+    [SerializeField] [Range(0.5f, 5)] private float ySpacing = 1;
     private int nbrRoom;
     private Vector3Int[,] listOfPos;
     [SerializeField] private int exitRoom = 1;
@@ -34,15 +36,22 @@ public class InstanciateRoom : MonoBehaviour
 
     [Header("Stage")]
     [SerializeField] private GameObject stage;
+    [SerializeField] [Range(0, 1)] private float fill;
+    [SerializeField] [Range(0, 1)] private float ground;
     private GameObject myStage;
     private Tilemap groundStageTilemap;
-    private Tilemap obstaclesSatgeTilemap;
+    private Tilemap obstaclesStageTilemap;
+    private Tilemap pathStageTilemap;
+    private List<List<Vector3Int>> doors = new();
+
+    private PathFinder pathfinder;
 
 
 
 
     void Start()
     {
+        pathfinder = ScriptableObject.CreateInstance<PathFinder>();
         nbrRoom = treasureRoom + bossRoom + exitRoom + battleRoom + startRoom;
         Vector3Int sizeMax = GetSizeMax(rooms);
         SetListOfPos(sizeMax);
@@ -52,40 +61,85 @@ public class InstanciateRoom : MonoBehaviour
         for (int i = 0; i < nbrRoom; ++i)
         {
             GameObject room = CreateRoom(sizeMax);
+            //room.transform.parent = stage.transform; Disabled to prevent data corruption
             RandomDestroyTilesFromRoom(room);
+        }
+
+        InstanciatePath(pathfinder.createAllPaths(doors));
+    }
+
+    private void InstanciatePath(List<Vector3Int> path)
+    {
+        if (path == null)
+        {
+            return;
+        }
+        foreach(Vector3Int pos in path)
+        {
+            pathStageTilemap.SetTile(pos, this.path);
+            obstaclesStageTilemap.SetTile(pos, null);
         }
     }
 
     private void CreateStage(Vector3Int size)
     {
         myStage = Instantiate(stage);
+        myStage.transform.parent = GetComponentInParent<Transform>();
         Tilemap[] tilemaps = myStage.GetComponentsInChildren<Tilemap>();
         foreach (Tilemap tilemap in tilemaps)
         {
-            if (tilemap.tag == "Ground")
+            if (tilemap.CompareTag("Ground"))
             {
                 groundStageTilemap = tilemap;
-                groundStageTilemap.size = size * nbrRoom;
-                groundStageTilemap.origin = new Vector3Int(-size.x * nbrRoom / 4, - size.x * nbrRoom / 2);
-                fillTilemap(groundStageTilemap);
+                groundStageTilemap.size = SetSize(size);
+                groundStageTilemap.origin = SetOrigin(groundStageTilemap.size);
+                FillTilemap(groundStageTilemap, ground);
             }
-            else if (tilemap.tag == "Obstacles")
+            else if (tilemap.CompareTag("Obstacles"))
             {
-                obstaclesSatgeTilemap = tilemap;
-                obstaclesSatgeTilemap.size = size * nbrRoom;
-                obstaclesSatgeTilemap.origin = new Vector3Int(-size.x * nbrRoom / 4, -size.x * nbrRoom / 2);
-                fillTilemap(obstaclesSatgeTilemap);
+                obstaclesStageTilemap = tilemap;
+                obstaclesStageTilemap.size = SetSize(size);
+                obstaclesStageTilemap.origin = SetOrigin(obstaclesStageTilemap.size);
+                FillTilemap(obstaclesStageTilemap, fill);
+            }
+            else if (tilemap.CompareTag("Path"))
+            {
+                pathStageTilemap = tilemap;
+                pathStageTilemap.size = SetSize(size);
+                pathStageTilemap.origin = SetOrigin(pathStageTilemap.size);
             }
         }
     }
 
-    private void fillTilemap(Tilemap tilemap)
+    private Vector3Int SetSize(Vector3Int size)
+    {
+        return new Vector3Int((int)((size.y + size.x) * nbrRoom *2),(int)((size.y + size.x) * nbrRoom *2));
+    }
+
+    private Vector3Int SetOrigin(Vector3Int size)
+    {
+        int x = size.x;
+        int y = size.y;
+        return new Vector3Int(-x/4,-y/2);
+    }
+
+    private Vector3Int posToStagePos(Vector3Int pos)
+    {
+        int x = pos.x + pos.y;
+        int y = pos.y - pos.x;
+        return new Vector3Int(x, y);
+    }
+
+    private void FillTilemap(Tilemap tilemap, float chance)
     {
         for (int i = tilemap.origin.x; i < tilemap.origin.x + tilemap.size.x; ++i)
         {
             for (int j = tilemap.origin.y; j < tilemap.origin.y + tilemap.size.y; ++j)
             {
-                tilemap.SetTile(new Vector3Int(i, j), tilemap.GetComponent<SetTiles>().getRandomScriptableTile());
+                if (! (Random.Range(0,100)>=chance*100))
+                {
+                    tilemap.SetTile(new Vector3Int(i, j), tilemap.GetComponent<SetTiles>().getRandomScriptableTile());
+                }
             }
         }
     }
@@ -122,7 +176,7 @@ public class InstanciateRoom : MonoBehaviour
         {
             for (int j = 0; j < nbrRoom / 2; ++j)
             {
-                listOfPos[i, j] = new Vector3Int((int)((sizeMax.x * i)/1.5),(int)((sizeMax.y * j)/2));
+                listOfPos[i, j] = new Vector3Int((int)(sizeMax.x * i / xSpacing),(int)(sizeMax.y * j / ySpacing));
             }
         }
     }
@@ -130,7 +184,7 @@ public class InstanciateRoom : MonoBehaviour
     private Vector3Int GetSizeMax(GameObject[] rooms)
     {
         Vector3Int sizeMax = new();
-        Vector3Int size = new();
+        Vector3Int size;
         foreach (GameObject room in rooms)
         {
             size = GetSizeMax(room);
@@ -167,14 +221,14 @@ public class InstanciateRoom : MonoBehaviour
 
     private GameObject CreateRoom(Vector3Int sizeMax)
     {
-        GameObject room = chooseRoom();
+        GameObject room = ChooseRoom();
 
         Vector2Int pos =  GetFreePos();
         //TODO: ValidateNewPos(pos,Room)
         
-        deletPos(pos, room);
+        DeletPos(pos, room);
 
-return Instantiate(room, new Vector3Int(listOfPos[pos.x,pos.y].x, listOfPos[pos.x, pos.y].y) + GetRandPos(sizeMax,room), Quaternion.identity);
+        return Instantiate(room, new Vector3Int(listOfPos[pos.x,pos.y].x, listOfPos[pos.x, pos.y].y) + GetRandPos(sizeMax,room), Quaternion.identity);
     }
 
     private Vector3Int GetRandPos(Vector3Int sizeMax, GameObject room)
@@ -185,27 +239,16 @@ return Instantiate(room, new Vector3Int(listOfPos[pos.x,pos.y].x, listOfPos[pos.
         return new Vector3Int(Random.Range(-diffX / 2, diffX / 2), Random.Range(-diffY / 2, diffY / 2));
     }
 
-    private void deletPos(Vector2Int pos, GameObject room)
+    private void DeletPos(Vector2Int pos, GameObject room)
     {
-        int z;
-        switch(room.tag)
+        var z = room.tag switch
         {
-            case "ExitRoom":
-                z = ((int)E.exitRoom);
-                break;
-            case "BossRoom":
-                z = ((int)E.bossRoom);
-                break;
-            case "StartRoom":
-                z = ((int)E.startRoom);
-                break;
-            case "TreasureRoom":
-                z = ((int)E.treasureRoom);
-                break;
-            default:
-                z = ((int)E.battleRoom);
-                break;
-        }
+            "ExitRoom" => ((int)E.exitRoom),
+            "BossRoom" => ((int)E.bossRoom),
+            "StartRoom" => ((int)E.startRoom),
+            "TreasureRoom" => ((int)E.treasureRoom),
+            _ => ((int)E.battleRoom),
+        };
         listOfPos[pos.x, pos.y].z = z;
     }
 
@@ -226,18 +269,22 @@ return Instantiate(room, new Vector3Int(listOfPos[pos.x,pos.y].x, listOfPos[pos.
         foreach (Tilemap tilemap in tilemaps)
         {
             DestroyTilesFromTilemap(tilemap, room);
-            if (tilemap.tag == "Water")
+            if (tilemap.CompareTag("Water"))
             {
-                placeTile(tilemap,water);
+                PlaceTile(tilemap,water);
             }
-            else if (tilemap.tag == "Path")
+            else if (tilemap.CompareTag("Path"))
             {
-                placeTile(tilemap,path);
+                PlaceTile(tilemap,path);
+            }
+            else if (tilemap.CompareTag("Door"))
+            {
+                AddDoors(tilemap);
             }
         }
     }
 
-    private void placeTile(Tilemap tilemap, IsometricRuleTile rule)
+    private void PlaceTile(Tilemap tilemap, IsometricRuleTile rule)
     {
         for (int x = tilemap.origin.x; x < tilemap.origin.x + tilemap.size.x; ++x)
         {
@@ -250,6 +297,22 @@ return Instantiate(room, new Vector3Int(listOfPos[pos.x,pos.y].x, listOfPos[pos.
                 }
             }
         }
+    }
+
+    private void AddDoors(Tilemap tilemap)
+    {
+        List<Vector3Int> listDoors = new();
+        for (int i = tilemap.origin.x; i < tilemap.origin.x + tilemap.size.x; ++i)
+        {
+            for (int j = tilemap.origin.y; j < tilemap.origin.y + tilemap.size.y; ++j)
+            {
+                if (tilemap.HasTile(new Vector3Int(i,j)))
+                {
+                    listDoors.Add(PosToStagePos(new Vector3Int(i, j),tilemap.GetComponent<Transform>().position));
+                }
+            }
+        }
+        doors.Add(listDoors);
     }
 
     private void DestroyTilesFromTilemap(Tilemap tilemap, GameObject room)
@@ -282,22 +345,43 @@ return Instantiate(room, new Vector3Int(listOfPos[pos.x,pos.y].x, listOfPos[pos.
         if (tilemap.HasTile(pos))
         {
             groundStageTilemap.SetTile(stagePos, null);
-            obstaclesSatgeTilemap.SetTile(stagePos, null);
+            obstaclesStageTilemap.SetTile(stagePos, null);
         }
     }
 
-    private static void RandomDestroyTile(Tilemap tilemap, Vector3Int pos)
+    private void RandomDestroyTile(Tilemap tilemap, Vector3Int pos)
     {
         if (tilemap.HasTile(pos))
         {
-            if (tilemap.GetTile<RandomSpritesTile>(pos).getChanceToSpawn() <= Random.Range(0, 100))
+            RandomSpritesTile t = tilemap.GetTile<RandomSpritesTile>(pos);
+            if (t != null)
             {
+                if (t.getChanceToSpawn() <= Random.Range(0, 100))
+                {
+                    tilemap.SetTile(pos, null);
+                }
+            }
+            else
+            {
+                RandomEnemies r = tilemap.GetTile<RandomEnemies>(pos);
+                if (r.GetChanceToSpawn() <= Random.Range(0, 100))
+                {
+                    Object enemy = r.GetEnemy();
+                    print(pos);
+                    Instantiate(enemy, RoomPosToFlatPos(pos) + tilemap.GetComponentInParent<Transform>().position, Quaternion.identity);
+                    //Instantiate(enemy, pos, Quaternion.identity);
+                }
                 tilemap.SetTile(pos, null);
             }
         }
     }
 
-    private GameObject chooseRoom()
+    private Vector3 RoomPosToFlatPos(Vector3Int v)
+    {
+        return new Vector3(v.x / 2f, v.y / 4f);
+    }
+
+    private GameObject ChooseRoom()
     {
         if (exitRoom > 0)
         {

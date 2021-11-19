@@ -13,6 +13,8 @@ TagManager:
   - Ground
   - Obstacles
   - Path
+  - Door
+  - Enemies
   layers:
   - Default
   - TransparentFX
