@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : ItemObject
+public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] public string Name;
     [SerializeField] public float FiringRate;
@@ -16,13 +16,15 @@ public abstract class Weapon : ItemObject
     public int TotalAmmo;
     public int AmmoInMagazine;
 
-    public void Awake()
+    public int Force;
+
+    public void Start()
     {
-        typeObject = ItemType.Weapon;
     }
 
     public void Update()
     {
+        StartCoroutine(ShootWeapon());
         ReloadWeapon();
     }
 
@@ -40,6 +42,19 @@ public abstract class Weapon : ItemObject
             {
                 AmmoInMagazine += TotalAmmo;
                 TotalAmmo = 0;
+            }
+        }
+    }
+
+    IEnumerator ShootWeapon()
+    {
+        if (Input.GetButton("Fire1"))
+        {
+            if (AmmoInMagazine > 0)
+            {
+                AmmoInMagazine --;
+                float waitTime = (1/FiringRate) * 3; // à tester selon les valeurs de cadence de tir
+                yield return new WaitForSeconds(waitTime);
             }
         }
     }
