@@ -52,10 +52,22 @@ public abstract class Weapon : MonoBehaviour
         {
             if (AmmoInMagazine > 0)
             {
-                AmmoInMagazine --;
+                AmmoInMagazine--;
                 float waitTime = (1/FiringRate) * 3; // à tester selon les valeurs de cadence de tir
                 yield return new WaitForSeconds(waitTime);
             }
+        }
+    }
+
+    public void AddAmmo(int quantity)
+    {
+        if (MaxAmmo >= TotalAmmo + quantity)
+        {
+            TotalAmmo += quantity;
+        }
+        else
+        {
+            TotalAmmo = MaxAmmo;
         }
     }
 }
