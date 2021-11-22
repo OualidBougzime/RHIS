@@ -18,44 +18,28 @@ public abstract class Weapon : MonoBehaviour
 
     public int Force;
 
-    public void Start()
-    {
-    }
-
-    public void Update()
-    {
-        StartCoroutine(ShootWeapon());
-        ReloadWeapon();
-    }
-
     public void ReloadWeapon()
     {
-        if (Input.GetButton("Reload"))
+        if (TotalAmmo + AmmoInMagazine >= MagazineSize)
         {
-            if (TotalAmmo + AmmoInMagazine >= MagazineSize)
-            {
-                TotalAmmo -= MagazineSize - AmmoInMagazine;
-                AmmoInMagazine = MagazineSize;
-            }
+            TotalAmmo -= MagazineSize - AmmoInMagazine;
+            AmmoInMagazine = MagazineSize;
+        }
 
-            else
-            {
-                AmmoInMagazine += TotalAmmo;
-                TotalAmmo = 0;
-            }
+        else
+        {
+            AmmoInMagazine += TotalAmmo;
+            TotalAmmo = 0;
         }
     }
 
-    IEnumerator ShootWeapon()
+    public IEnumerator ShootWeapon()
     {
-        if (Input.GetButton("Fire1"))
+        if (AmmoInMagazine > 0)
         {
-            if (AmmoInMagazine > 0)
-            {
-                AmmoInMagazine--;
-                float waitTime = (1/FiringRate) * 3; // à tester selon les valeurs de cadence de tir
-                yield return new WaitForSeconds(waitTime);
-            }
+            AmmoInMagazine--;
+            float waitTime = (1/FiringRate) * 3; // à tester selon les valeurs de cadence de tir
+            yield return new WaitForSeconds(waitTime);
         }
     }
 

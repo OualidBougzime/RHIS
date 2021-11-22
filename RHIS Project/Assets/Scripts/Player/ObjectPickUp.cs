@@ -20,7 +20,7 @@ public class ObjectPickUp : MonoBehaviour
             {
                 target.GetComponent<Inventory>().Add(objectToPick);
             }
-            
+            Destroy(objectToPick);
         }
     }
 }
