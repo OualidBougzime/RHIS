@@ -259,17 +259,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
+      propertyPath: fill
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
       propertyPath: stage
       value: 
       objectReference: {fileID: 4492151794671311293, guid: 59ba740f2101e1249b20792db11efd1d, type: 3}
     - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
-      propertyPath: rooms.Array.size
-      value: 2
+      propertyPath: xSpacing
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
+      propertyPath: ySpacing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
+      propertyPath: battleRoom
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
+      propertyPath: rooms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
+      propertyPath: rooms.Array.data[0]
+      value: 
+      objectReference: {fileID: 5672730836890018052, guid: 8249010a8b9f8d8428637443cf1eeba5, type: 3}
     - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
       propertyPath: rooms.Array.data[1]
       value: 
-      objectReference: {fileID: 5672730836890018052, guid: 53a5a9788741a82468c94526beecd14c, type: 3}
+      objectReference: {fileID: 5672730836890018052, guid: f7ad18698f5e7614fb9dcac86d00e791, type: 3}
     - target: {fileID: 759664596227522790, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
       propertyPath: m_Name
       value: MapManager
