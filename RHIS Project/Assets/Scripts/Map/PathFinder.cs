@@ -2,42 +2,85 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PathFinder : ScriptableObject
 {
     private List<Room> rooms = new();
+    private List<List<MyTile>> tiles = new();
 
-    public List<Vector3Int> createAllPaths(List<List<Vector3Int>> allDoors)
+    private void CreateTiles(Tilemap tilemap, List<Vector3Int> ground)
+    {
+        for (int i = tilemap.origin.x; i < tilemap.origin.x + tilemap.size.x; ++i)
+        {
+            for (int j = tilemap.origin.y; j < tilemap.origin.y + tilemap.size.y; ++j)
+            {
+                Vector3Int v = new(i, j);
+                MyTile tile = ScriptableObject.CreateInstance<MyTile>();
+                tile.SetPosition(v);
+                if (!ground.Contains(v))
+                {
+                    tile.SetTraversable(false);
+                }
+                tiles[i].Add(tile);
+            }
+        }
+        for (int i = tilemap.origin.x; i < tilemap.origin.x + tilemap.size.x; ++i)
+        {
+            for (int j = tilemap.origin.y; j < tilemap.origin.y + tilemap.size.y; ++j)
+            {
+                if (i!=0)
+                {
+                    tiles[i][j].AddNeighbours(tiles[i - 1][j]);
+                }
+                if(i != tilemap.origin.x + tilemap.size.x - 1)
+                {
+                    tiles[i][j].AddNeighbours(tiles[i+i][j]);
+                }
+                if (j != 0)
+                {
+                    tiles[i][j].AddNeighbours(tiles[i][j - 1]);
+                }
+                if (j != tilemap.origin.y + tilemap.size.y - 1)
+                {
+                    tiles[i][j].AddNeighbours(tiles[i][j + 1]);
+                }
+            }
+        }
+
+    }
+
+    public List<Vector3Int> CreateAllPaths(List<List<Vector3Int>> allDoors, List<Vector3Int> ground, Tilemap tilemap)
     {
         SetPathfinder(allDoors);
         List<(Vector3Int, Vector3Int)> tuples = CreateTuples();
         List<Vector3Int> pathPos = new();
-        
+
+        CreateTiles(tilemap, ground);
+
         foreach ((Vector3Int,Vector3Int) tuple in tuples)
         {
-            pathPos.AddRange(FindPath(tuple.Item1, tuple.Item2));
+            pathPos.AddRange(FindPath(tuple.Item1, tuple.Item2, ground));
         }
 
         return pathPos;
     }
 
-    private List<Vector3Int> FindPath(Vector3Int start, Vector3Int stop)
+    private List<Vector3Int> FindPath(Vector3Int start, Vector3Int stop, List<Vector3Int> ground) //TODO: Good path
     {
         int diffX = stop.x - start.x;
         int diffY = stop.y - start.y;
-        return FindPath(start, stop, diffX, diffY);
-        throw new NotImplementedException();
-    }
-
-    private List<Vector3Int> FindPath(Vector3Int start, Vector3Int stop, int diffX, int diffY) //TODO: Good path
-    {
-        int x;
-        int y;
         List<Vector3Int> path = new();
         path.Add(start);
         Vector3Int progress = start;
-        x = ChooseStep(diffX);
-        y = ChooseStep(diffY);
+        int x = ChooseStep(diffX);
+        int y = ChooseStep(diffY);
+
+        RecursivePath(ground, start, stop, ref path, diffX, diffY, x, y);
+
+        
+
+        /*
         while (diffX != 0)
         {
             progress.x += x;
@@ -49,8 +92,58 @@ public class PathFinder : ScriptableObject
             progress.y += y;
             diffY -= y;
             path.Add(progress);
-        }
+        }*/
         return path;
+    }
+
+    private void RecursivePath(List<Vector3Int> ground, Vector3Int progress, Vector3Int stop, ref List<Vector3Int> path, int diffX, int diffY, int x, int y)
+    {
+        int startIterator = path.Count;
+        while (diffX != 0)
+        {
+            progress.x += x;
+            diffX -= x;
+            if(path.Contains(progress))
+            {
+                return;
+            }
+            path.Add(progress);
+            if (ground.Contains(progress) && progress != stop)
+            {
+                RemovePath(startIterator, ref path, ref diffX, x);
+                break;
+            }
+        }
+        while (diffY != 0)
+        {
+            progress.y += y;
+            diffY -= y;
+            if (path.Contains(progress))
+            {
+                return;
+            }
+            path.Add(progress);
+            if (ground.Contains(progress) && progress != stop)
+            {
+                RemovePath(startIterator, ref path, ref diffY, y);
+                break;
+            }
+        }
+        /*if (diffX != 0 || diffY != 0)
+        {
+            RecursivePath(ground, progress, stop, ref path, diffX, diffY, x, y);
+        }*/
+    }
+
+    private void RemovePath(int startIterator, ref List<Vector3Int> path, ref int diff, int direction)
+    {
+        int nbr = (path.Count - startIterator) / 4;
+        if (nbr > 3)
+        {
+            nbr = 3;
+        }
+        diff -= nbr * direction;
+        path.RemoveRange(path.Count - nbr, nbr);
     }
 
     private int ChooseStep(int diff)

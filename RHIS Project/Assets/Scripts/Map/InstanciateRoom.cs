@@ -43,6 +43,7 @@ public class InstanciateRoom : MonoBehaviour
     private Tilemap obstaclesStageTilemap;
     private Tilemap pathStageTilemap;
     private List<List<Vector3Int>> doors = new();
+    private List<Vector3Int> groundRoom = new();
 
     private PathFinder pathfinder;
 
@@ -62,11 +63,36 @@ public class InstanciateRoom : MonoBehaviour
         {
             GameObject room = CreateRoom(sizeMax);
             //room.transform.parent = stage.transform; Disabled to prevent data corruption
-            RandomDestroyTilesFromRoom(room);
+            AffectTilemapFromRoom(room);
         }
 
-        InstanciatePath(pathfinder.createAllPaths(doors));
+        InstanciatePath(pathfinder.CreateAllPaths(doors, groundRoom, groundStageTilemap));
     }
+
+    /*private List<Vector3Int> GetGround()
+    {
+        List<Vector3Int> ground = new();
+
+        foreach (Tilemap tilemap in GetComponentsInChildren<Tilemap>())
+        {
+            print("a");
+            if (tilemap.CompareTag("Ground"))
+            {
+                for (int i = tilemap.origin.x; i < tilemap.origin.x + tilemap.size.x; ++i)
+                {
+                    for (int j = tilemap.origin.y; j < tilemap.origin.y + tilemap.size.y; ++j)
+                    {
+                        Vector3Int v = new(i, j);
+                        if (tilemap.HasTile(v))
+                        {
+                            ground.Add(PosToStagePos(v, tilemap.GetComponent<Transform>().position));
+                        }
+                    }
+                }
+            }
+        }
+        return ground;
+    }*/
 
     private void InstanciatePath(List<Vector3Int> path)
     {
@@ -263,7 +289,7 @@ public class InstanciateRoom : MonoBehaviour
         return new Vector2Int(x, y);
     }
 
-    private void RandomDestroyTilesFromRoom(GameObject room)
+    private void AffectTilemapFromRoom(GameObject room)
     {
         Tilemap[] tilemaps = room.GetComponentsInChildren<Tilemap>();
         foreach (Tilemap tilemap in tilemaps)
@@ -280,6 +306,25 @@ public class InstanciateRoom : MonoBehaviour
             else if (tilemap.CompareTag("Door"))
             {
                 AddDoors(tilemap);
+            }
+            else if (tilemap.CompareTag("Ground"))
+            {
+                AddGround(tilemap);
+            }
+        }
+    }
+
+    private void AddGround(Tilemap tilemap)
+    {
+        for (int i = tilemap.origin.x; i < tilemap.origin.x + tilemap.size.x; ++i)
+        {
+            for (int j = tilemap.origin.y; j < tilemap.origin.y + tilemap.size.y; ++j)
+            {
+                Vector3Int v = new(i, j);
+                if (tilemap.HasTile(v))
+                {
+                    groundRoom.Add(PosToStagePos(v, tilemap.GetComponent<Transform>().position));
+                }
             }
         }
     }
@@ -367,7 +412,6 @@ public class InstanciateRoom : MonoBehaviour
                 if (r.GetChanceToSpawn() <= Random.Range(0, 100))
                 {
                     Object enemy = r.GetEnemy();
-                    print(pos);
                     Instantiate(enemy, RoomPosToFlatPos(pos) + tilemap.GetComponentInParent<Transform>().position, Quaternion.identity);
                     //Instantiate(enemy, pos, Quaternion.identity);
                 }
