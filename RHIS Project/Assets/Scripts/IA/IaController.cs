@@ -71,9 +71,11 @@ public class IaController : MonoBehaviour
     }
 
 
-    private void attack()
+    private void attack(string tag)
     {
         anim.SetTrigger("attack");
+        GameObject[] goWithTag = GameObject.FindGameObjectsWithTag(tag);
+
     }
 
 
@@ -106,7 +108,7 @@ public class IaController : MonoBehaviour
                 moveToAttack();
             }else
             {
-                attack();
+                attack("Player");
             }
         }
         else
