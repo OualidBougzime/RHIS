@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 	public Weapon PlayerWeapon;
 	public GameObject Projectile;
 	public int Force;
-    private Rigidbody rigidbody;
     private int vitesse = 20;
     private static int direction;
     private static char key;
@@ -20,7 +19,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    	rigidbody = GetComponent<Rigidbody>();
     	rotationVector = transform.rotation.eulerAngles;
         
     }

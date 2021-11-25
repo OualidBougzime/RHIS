@@ -12,6 +12,7 @@ public class IaController : MonoBehaviour
     private int rotation;       //Position de l'IA lors du déplacement
     Vector3 rotationVector;
     [SerializeField] float minimumDistanceToAttack;
+    [SerializeField] bool idling;
 
 
 
@@ -19,6 +20,9 @@ public class IaController : MonoBehaviour
     {
         Offset = new Vector2(transform.position.x - 10 , transform.position.x + 10); // initialisation du champ d'allez retour en fonction de la position initiale de l'IA
         rotationVector = transform.rotation.eulerAngles;
+
+        idling = false;
+
 
     }
 	
@@ -103,16 +107,18 @@ public class IaController : MonoBehaviour
 
 	void Update () 
     {
-        if(isNearPlayer("Player",20) == true)
+        if(idling == true)
         {
-            if(isFarFromPlayer("Player",minimumDistanceToAttack) == true)
-            {
-                moveToAttack();
-            }else
-            {
-                attack("Player");
-            }
-        }
+                 if(isNearPlayer("Player",20) == true)
+                {
+                    if(isFarFromPlayer("Player",minimumDistanceToAttack) == true)
+                    {
+                        moveToAttack();
+                    }else
+                    {
+                        attack("Player");
+                    }
+                }
         else
         { 
             if (transform.position.x > Offset.y)
@@ -121,6 +127,10 @@ public class IaController : MonoBehaviour
                 goRight();
 
             transform.position = transform.position + new Vector3(Vitesse * direction * Time.deltaTime/200, 0, 0); 
+        }
+        }else
+        {
+                    anim.SetTrigger("idle");
         }
         
     }
