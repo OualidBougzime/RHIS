@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisoned: 0
-  healthPoint: 20
+  healthPointMax: 20
 --- !u!135 &136352849
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312145, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_TagString
-      value: MainCamera
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312146, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_RootOrder
@@ -176,11 +176,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312146, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.6
+      value: 42.63
       objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312146, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.4
+      value: 45.22
       objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312146, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_LocalPosition.z
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisoned: 0
-  healthPoint: 20
+  healthPointMax: 100
 --- !u!135 &822517741
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -633,7 +633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisoned: 0
-  healthPoint: 20
+  healthPointMax: 20
 --- !u!135 &96532794241266413
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -684,11 +684,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3988229903595656698, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 65.40008
+      value: 44.86
       objectReference: {fileID: 0}
     - target: {fileID: 3988229903595656698, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 45.875446
+      value: 45.43
       objectReference: {fileID: 0}
     - target: {fileID: 3988229903595656698, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -749,11 +749,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3504232877694087486, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 59.669678
+      value: 40.29
       objectReference: {fileID: 0}
     - target: {fileID: 3504232877694087486, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 41.647762
+      value: 43.84
       objectReference: {fileID: 0}
     - target: {fileID: 3504232877694087486, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -880,7 +880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisoned: 0
-  healthPoint: 20
+  healthPointMax: 20
 --- !u!135 &1260880323392235844
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -911,11 +911,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.06
+      value: 43.7
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 50.72
+      value: 47.02
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.z

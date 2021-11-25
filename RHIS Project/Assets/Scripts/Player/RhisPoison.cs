@@ -13,7 +13,7 @@ public class RhisPoison : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 10);
+        Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 1);
 
         foreach (Collider collider in hitColliders)
         {

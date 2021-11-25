@@ -12,7 +12,7 @@ public class HealthBarBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offset.y+=2*transform.parent.localScale.y;
+        offset.y+=transform.parent.localScale.y/10;
         slider.transform.position = transform.parent.position + offset;
     }
 
