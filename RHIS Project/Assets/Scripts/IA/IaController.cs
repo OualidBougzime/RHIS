@@ -11,6 +11,8 @@ public class IaController : MonoBehaviour
     private int direction = 1;  //Pas d'incrément de la direction
     private int rotation;       //Position de l'IA lors du déplacement
     Vector3 rotationVector;
+    [SerializeField] float minimumDistanceToAttack;
+    [SerializeField] bool idling;
 
 
 
@@ -18,6 +20,10 @@ public class IaController : MonoBehaviour
     {
         Offset = new Vector2(transform.position.x - 10 , transform.position.x + 10); // initialisation du champ d'allez retour en fonction de la position initiale de l'IA
         rotationVector = transform.rotation.eulerAngles;
+
+        idling = false;
+
+
     }
 	
 
@@ -25,7 +31,7 @@ public class IaController : MonoBehaviour
     //aller à gauche
     private void goLeft () 
     {
-        rotation = -140;
+        rotation = -180;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
         anim.SetTrigger("walk");
@@ -63,7 +69,7 @@ public class IaController : MonoBehaviour
     
         for (int i = 0; i < goWithTag.Length; ++i)
         {
-            if (Vector3.Distance(transform.position, goWithTag[i].transform.position) >= minimumDistance)
+            if (Vector3.Distance(transform.position, goWithTag[i].transform.position) >= minimumDistance/2)
                 return true;
         }
     
@@ -71,9 +77,11 @@ public class IaController : MonoBehaviour
     }
 
 
-    private void attack()
+    private void attack(string tag)
     {
         anim.SetTrigger("attack");
+        GameObject[] goWithTag = GameObject.FindGameObjectsWithTag(tag);
+
     }
 
 
@@ -84,7 +92,7 @@ public class IaController : MonoBehaviour
         var wayPointPos = new Vector3(wayPoint.transform.position.x, wayPoint.transform.position.y, wayPoint.transform.position.z);
         if(wayPoint.transform.position.x < transform.position.x)
         {        
-            rotation = -140;
+            rotation = -180;
             rotationVector.y = rotation;
             transform.rotation = Quaternion.Euler(rotationVector);
         }else
@@ -93,22 +101,24 @@ public class IaController : MonoBehaviour
             rotationVector.y = rotation;
             transform.rotation = Quaternion.Euler(rotationVector);
         }
-        transform.position = Vector3.MoveTowards(transform.position, wayPointPos, 5 * Time.deltaTime); 
+        transform.position = Vector3.MoveTowards(transform.position, wayPointPos, 5 * Time.deltaTime/10); 
     }
 
 
 	void Update () 
     {
-        if(isNearPlayer("Player",20) == true)
+        if(idling == true)
         {
-            if(isFarFromPlayer("Player",3) == true)
-            {
-                moveToAttack();
-            }else
-            {
-                attack();
-            }
-        }
+                 if(isNearPlayer("Player",20) == true)
+                {
+                    if(isFarFromPlayer("Player",minimumDistanceToAttack) == true)
+                    {
+                        moveToAttack();
+                    }else
+                    {
+                        attack("Player");
+                    }
+                }
         else
         { 
             if (transform.position.x > Offset.y)
@@ -116,7 +126,11 @@ public class IaController : MonoBehaviour
             else if(transform.position.x < Offset.x)
                 goRight();
 
-            transform.position = transform.position + new Vector3(Vitesse * direction * Time.deltaTime/20, 0, 0); 
+            transform.position = transform.position + new Vector3(Vitesse * direction * Time.deltaTime/200, 0, 0); 
+        }
+        }else
+        {
+                    anim.SetTrigger("idle");
         }
         
     }

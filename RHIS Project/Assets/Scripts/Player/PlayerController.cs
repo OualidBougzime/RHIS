@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+	public Weapon PlayerWeapon;
 	public GameObject Projectile;
 	public int Force;
-    private Rigidbody rigidbody;
     private int vitesse = 20;
     private static int direction;
     private static char key;
@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    	rigidbody = GetComponent<Rigidbody>();
     	rotationVector = transform.rotation.eulerAngles;
         
     }
@@ -91,12 +90,25 @@ public class PlayerController : MonoBehaviour
 	void fire()
 	{
 		anim.SetTrigger("fire");
-		//GetComponent<AudioSource>().PlayOneShot(SoundTir);
-		GameObject bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
-		bullet.transform.position = bullet.transform.position + new Vector3(1,1, 1);
-		//Bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.right) * Force;
-		//transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * Force, Space.World);
-		Destroy(bullet, 2f);
+
+		if (PlayerWeapon.AmmoInMagazine != 0)
+		{
+			StartCoroutine(PlayerWeapon.ShootWeapon());
+
+			//GetComponent<AudioSource>().PlayOneShot(SoundTir);
+			GameObject bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
+			bullet.transform.position = bullet.transform.position + new Vector3(1,1, 1);
+			//Bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.right) * Force;
+			//transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * Force, Space.World);
+			Destroy(bullet, 2f);
+		}
+		
+	}
+
+	void reload()
+	{
+		//GetComponent<AudioSource>().PlayOneShot(SoundReload);
+		PlayerWeapon.ReloadWeapon();
 	}
 
 
@@ -122,6 +134,9 @@ public class PlayerController : MonoBehaviour
 			}
 			if(Input.GetButtonDown("Fire1")){
 				fire();
+			}
+			if(Input.GetButtonDown("Reload")){
+				reload();
     	}
 		}else
 		{

@@ -168,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312145, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: MainCamera
       objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312146, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_RootOrder
@@ -176,11 +176,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312146, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.63
+      value: -23.6
       objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312146, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 45.22
+      value: 30.4
       objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312146, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_LocalPosition.z
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisoned: 0
-  healthPointMax: 100
+  healthPointMax: 20
 --- !u!135 &822517741
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -684,11 +684,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3988229903595656698, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.86
+      value: 65.40008
       objectReference: {fileID: 0}
     - target: {fileID: 3988229903595656698, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 45.43
+      value: 45.875446
       objectReference: {fileID: 0}
     - target: {fileID: 3988229903595656698, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -749,11 +749,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3504232877694087486, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.29
+      value: 59.669678
       objectReference: {fileID: 0}
     - target: {fileID: 3504232877694087486, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 43.84
+      value: 41.647762
       objectReference: {fileID: 0}
     - target: {fileID: 3504232877694087486, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -880,7 +880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisoned: 0
-  healthPointMax: 20
+  healthPointMax: 100
 --- !u!135 &1260880323392235844
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -911,11 +911,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 43.7
+      value: 31.06
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 47.02
+      value: 50.72
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.z

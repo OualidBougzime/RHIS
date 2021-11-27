@@ -28,10 +28,10 @@ Transform:
   m_GameObject: {fileID: 265488551001459799}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 65.40008, y: 45.875446, z: 20.53282}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1977876154085529177}
+  - {fileID: 9120457406150302774}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2a457da4fd94a43b752945c9c4840c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerWeapon: {fileID: 0}
   Projectile: {fileID: 0}
   Force: 0
-  anim: {fileID: 0}
+  anim: {fileID: -8783313783038965442}
 --- !u!95 &-8783313783038965442
 Animator:
   serializedVersion: 4
@@ -60,7 +61,7 @@ Animator:
   m_GameObject: {fileID: 265488551001459799}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 385051d90a3ab43f2ac70a900cffe6a3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -86,21 +87,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1001 &6830835118862321532
+--- !u!1001 &4263936926695673107
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 3988229903595656698}
     m_Modifications:
-    - target: {fileID: 4567370300804392553, guid: 778c4b463c085453d86ad252788b7a1b, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4567370300804392553, guid: 778c4b463c085453d86ad252788b7a1b, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5025687036166050085, guid: 778c4b463c085453d86ad252788b7a1b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -189,10 +182,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 9036940274714965771, guid: 778c4b463c085453d86ad252788b7a1b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 778c4b463c085453d86ad252788b7a1b, type: 3}
---- !u!224 &1977876154085529177 stripped
+--- !u!224 &9120457406150302774 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5025687036166050085, guid: 778c4b463c085453d86ad252788b7a1b, type: 3}
-  m_PrefabInstance: {fileID: 6830835118862321532}
+  m_PrefabInstance: {fileID: 4263936926695673107}
   m_PrefabAsset: {fileID: 0}

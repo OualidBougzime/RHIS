@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6002047464695311404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 41.512688, y: 45.92552, z: 15.966285}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2191640507547301577}
@@ -123,6 +123,7 @@ MonoBehaviour:
   Vitesse: 50
   Offset: {x: 0, y: 0}
   anim: {fileID: 6002047464695311407}
+  minimumDistanceToAttack: 0.7
 --- !u!54 &-3745584291278501693
 Rigidbody:
   m_ObjectHideFlags: 0

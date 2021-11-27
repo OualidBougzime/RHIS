@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class HealthBarBehaviour : MonoBehaviour
 {
-    public Slider slider;
-    public Color high;
-    public Color low;
-    public Vector3 offset;
+    [SerializeField] private Slider slider;
+    [SerializeField] private Color high;
+    [SerializeField] private Color low;
+    [SerializeField] private Vector3 offset;
     // Start is called before the first frame update
     void Start()
     {
-        offset.y+=2*transform.parent.localScale.y;
+        offset.y+=transform.parent.localScale.y/10;
         slider.transform.position = transform.parent.position + offset;
     }
 
-     public void setHealth(float health, float maxHealth)
+     public void setHealth(int health, int maxHealth)
     {
         slider.gameObject.SetActive(health <= maxHealth);
         slider.value = health;
