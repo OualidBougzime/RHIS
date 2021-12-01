@@ -11,6 +11,7 @@ public class InstanciateRoom : MonoBehaviour
     [SerializeField] [Range(0.5f, 5)] private float ySpacing = 1;
     private int nbrRoom;
     private Vector3Int[,] listOfPos;
+    private bool firstRoom = false;
     [SerializeField] private int exitRoom = 1;
     private List<GameObject> exitRooms = new();
     [SerializeField] private int bossRoom = 1;
@@ -29,6 +30,7 @@ public class InstanciateRoom : MonoBehaviour
         treasureRoom = -4,
         battleRoom = -5
     }
+
 
     [Header("Rule Sprite")]
     [SerializeField] private IsometricRuleTile water;
@@ -248,13 +250,111 @@ public class InstanciateRoom : MonoBehaviour
     private GameObject CreateRoom(Vector3Int sizeMax)
     {
         GameObject room = ChooseRoom();
-
-        Vector2Int pos =  GetFreePos();
-        //TODO: ValidateNewPos(pos,Room)
+        Vector2Int pos;
+        do
+        {
+             pos = GetFreePos();
+        } while (!ValidateNewPos(pos, room));
         
         DeletPos(pos, room);
 
         return Instantiate(room, new Vector3Int(listOfPos[pos.x,pos.y].x, listOfPos[pos.x, pos.y].y) + GetRandPos(sizeMax,room), Quaternion.identity);
+    }
+
+    private bool ValidateNewPos(Vector2Int pos, GameObject room)
+    {
+        List<Vector2Int> neighbours = GetNeighbours(pos);
+        switch (room.tag)
+        {
+            case "ExitRoom":
+                firstRoom = true;
+                return true;
+            case "BossRoom":
+                if (!firstRoom)
+                {
+                    firstRoom = true;
+                    return true;
+                }
+                return Contains(neighbours, E.exitRoom);
+            case "StartRoom":
+                if (!firstRoom)
+                {
+                    firstRoom = true;
+                    return true;
+                }
+                return !Contains(neighbours, E.bossRoom);
+            case "TreasureRoom":
+                if (!firstRoom)
+                {
+                    firstRoom = true;
+                    return true;
+                }
+                return !Contains(neighbours, E.bossRoom) && !Contains(neighbours, E.startRoom);
+            default:
+                if (!firstRoom)
+                {
+                    Debug.Log("true");
+                    firstRoom = true;
+                    return true;
+                }
+                return Contains(neighbours);
+        }
+    }
+
+    private bool Contains(List<Vector2Int> neighbours)
+    {
+        foreach (Vector2Int n in neighbours)
+        {
+            if (listOfPos[n.x, n.y].z != 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool Contains(List<Vector2Int> neighbours, E tag)
+    {
+        foreach(Vector2Int n in neighbours)
+        {
+            if(listOfPos[n.x,n.y].z == (int)tag)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private List<Vector2Int> GetNeighbours(Vector2Int pos)
+    {
+        List<Vector2Int> neighbours = new();
+
+        for (int x = pos.x - 1; x <= pos.x + 1; ++x)
+        {
+            if (x < 0 || x > nbrRoom / 2 - 1)
+            {
+                continue;
+            }
+            for (int y = pos.y - 1; y <= pos.y + 1; ++y)
+            {
+                if (y < 0 || y > nbrRoom / 2 - 1)
+                {
+                    continue;
+                }
+                if(x == pos.x && y == pos.y)
+                {
+                    continue;
+                }
+                neighbours.Add(new Vector2Int(x, y));
+            }
+        }
+        string n = "";
+        foreach (Vector2Int v in neighbours)
+        {
+            n +=v + ", ";
+        }
+        Debug.Log("room : " + pos + ", voisins : " + n);
+        return neighbours;
     }
 
     private Vector3Int GetRandPos(Vector3Int sizeMax, GameObject room)
