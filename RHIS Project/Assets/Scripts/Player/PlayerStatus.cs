@@ -34,6 +34,6 @@ public class PlayerStatus : MonoBehaviour
 
     public void Death()
     {
-
+        Destroy(gameObject);
     }
 }
