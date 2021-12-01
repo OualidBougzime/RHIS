@@ -509,10 +509,14 @@ public class InstanciateRoom : MonoBehaviour
             else
             {
                 RandomEnemies r = tilemap.GetTile<RandomEnemies>(pos);
-                if (r.GetChanceToSpawn() <= Random.Range(0, 100))
+                if (r.GetChanceToSpawn() >= Random.Range(0, 100))
                 {
                     Object enemy = r.GetEnemy();
                     Instantiate(enemy, RoomPosToFlatPos(pos) + tilemap.GetComponentInParent<Transform>().position, Quaternion.identity);
+                    if (enemy.name == "Rhis Variant")
+                    {
+                        Debug.Log("pos " + pos + " flatPos " + RoomPosToFlatPos(pos)+ " position " + (pos + tilemap.GetComponentInParent<Transform>().position));
+                    }
                     //Instantiate(enemy, pos, Quaternion.identity);
                 }
                 tilemap.SetTile(pos, null);
@@ -522,7 +526,9 @@ public class InstanciateRoom : MonoBehaviour
 
     private Vector3 RoomPosToFlatPos(Vector3Int v)
     {
-        return new Vector3(v.x / 2f, v.y / 4f);
+        float fX = v.x - v.y;
+        float fY = v.x + v.y + 1f;
+        return new Vector3(fX/2f,fY/4f);
     }
 
     private GameObject ChooseRoom()
