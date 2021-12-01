@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30daa9150b0f24a41a495cc9ce7e1faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 52094354591346546, guid: d5b812bbea770a149a24cc65b04991a9, type: 3}
+  effect: {fileID: 970765343636512615, guid: 57eb49a1ea931954288fd6a243aa43f5, type: 3}
   poisoned: 0
   healthPointMax: 20
   slower: 0
@@ -102,15 +102,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1373209887881615805, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 41.512688
       objectReference: {fileID: 0}
     - target: {fileID: 1373209887881615805, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 45.92552
       objectReference: {fileID: 0}
     - target: {fileID: 1373209887881615805, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1373209887881615805, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -142,7 +142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3287430917894077264, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_Name
-      value: Rihar Variant
+      value: Rihar
       objectReference: {fileID: 0}
     - target: {fileID: 3758913229232145311, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_AnchorMax.x

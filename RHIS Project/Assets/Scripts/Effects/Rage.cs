@@ -13,6 +13,7 @@ public class Rage : Effect
     // Update is called once per frame
     protected override void Update()
     {
+        transform.position = transform.parent.position;
         sprite.color = new Color(1, 0, 0, 1);
     }
 }

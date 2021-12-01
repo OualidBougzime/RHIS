@@ -16,6 +16,7 @@ public class Poison : Effect
     protected override void Update()
     {
         // Change the 'color' property of the 'Sprite Renderer'
-        sprite.color = new Color(0, 1, 0, 1);
+              transform.position = transform.parent.position;
+            sprite.color = new Color(0, 1, 0, 1);
     }
 }

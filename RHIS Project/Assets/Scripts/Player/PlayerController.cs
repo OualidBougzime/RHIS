@@ -1,4 +1,4 @@
-using System.Collections;
+	using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     Vector3 rotationVector;
 	public Animator anim;
 
-
+	//Adding DontDestroyOnLoad
+	
 
     // Start is called before the first frame update
     void Start()
@@ -91,7 +92,7 @@ public class PlayerController : MonoBehaviour
 	{
 		anim.SetTrigger("fire");
 
-		if (PlayerWeapon.AmmoInMagazine != 0)
+		if (PlayerWeapon != null && PlayerWeapon.AmmoInMagazine != 0)
 		{
 			StartCoroutine(PlayerWeapon.ShootWeapon());
 
@@ -107,8 +108,11 @@ public class PlayerController : MonoBehaviour
 
 	void reload()
 	{
-		//GetComponent<AudioSource>().PlayOneShot(SoundReload);
-		PlayerWeapon.ReloadWeapon();
+		if (PlayerWeapon != null)
+		{
+			//GetComponent<AudioSource>().PlayOneShot(SoundReload);
+			PlayerWeapon.ReloadWeapon();
+		}
 	}
 
 
@@ -135,9 +139,6 @@ public class PlayerController : MonoBehaviour
 			if(Input.GetButtonDown("Fire1")){
 				fire();
 			}
-			if(Input.GetButtonDown("Reload")){
-				reload();
-    	}
 		}else
 		{
 			idle();

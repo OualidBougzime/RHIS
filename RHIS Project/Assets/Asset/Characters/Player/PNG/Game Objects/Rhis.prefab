@@ -33,7 +33,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9120457406150302774}
+  - {fileID: 4450483152678604346}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
---- !u!1001 &4263936926695673107
+--- !u!1001 &8682264304649658143
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -250,13 +250,17 @@ PrefabInstance:
       value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 9036940274714965771, guid: 778c4b463c085453d86ad252788b7a1b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9036940274714965771, guid: 778c4b463c085453d86ad252788b7a1b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 778c4b463c085453d86ad252788b7a1b, type: 3}
---- !u!224 &9120457406150302774 stripped
+--- !u!224 &4450483152678604346 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5025687036166050085, guid: 778c4b463c085453d86ad252788b7a1b, type: 3}
-  m_PrefabInstance: {fileID: 4263936926695673107}
+  m_PrefabInstance: {fileID: 8682264304649658143}
   m_PrefabAsset: {fileID: 0}
