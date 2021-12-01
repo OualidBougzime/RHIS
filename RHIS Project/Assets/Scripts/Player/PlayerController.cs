@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     Vector3 rotationVector;
 	public Animator anim;
 
-
+	//Adding DontDestroyOnLoad
 	
 
     // Start is called before the first frame update
@@ -139,9 +139,6 @@ public class PlayerController : MonoBehaviour
 			if(Input.GetButtonDown("Fire1")){
 				fire();
 			}
-			if(Input.GetButtonDown("Reload")){
-				reload();
-    	}
 		}else
 		{
 			idle();
