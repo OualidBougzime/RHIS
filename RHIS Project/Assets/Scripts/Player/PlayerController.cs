@@ -178,6 +178,8 @@ public class PlayerController : MonoBehaviour
 
 	void fire()
 	{
+		anim.SetTrigger("fire");
+
 		if (PlayerWeapon != null && PlayerWeapon.AmmoInMagazine != 0)
 		{
 			anim.SetTrigger("fire");
