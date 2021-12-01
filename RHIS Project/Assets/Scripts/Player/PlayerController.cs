@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     	key = 'Q';
 		anim.SetTrigger("run");
     	direction = -1;
-    	rotation = -140;
+    	rotation = -180;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
     	transform.position = transform.position + new Vector3(vitesse * direction * Time.deltaTime/20, 0, 0); 

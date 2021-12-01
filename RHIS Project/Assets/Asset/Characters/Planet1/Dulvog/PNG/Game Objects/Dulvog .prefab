@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250633769277312145}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42, y: 33, z: -1336.14}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -52,6 +52,8 @@ MonoBehaviour:
   Offset: {x: 0, y: 0}
   anim: {fileID: 1250633769277312147}
   minimumDistanceToAttack: 1.5
+  idling: 0
+  damage: 0
 --- !u!212 &1250633769277312148
 SpriteRenderer:
   m_ObjectHideFlags: 0

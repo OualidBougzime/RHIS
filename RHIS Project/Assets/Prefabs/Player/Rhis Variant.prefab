@@ -38,8 +38,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 473237049
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d19c0a132135bfb4680ca6dabe0173b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c09c1fd840228d4babe4dba011b5582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1001 &3738275766431001512
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,15 +102,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3988229903595656698, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 59.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3988229903595656698, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 56
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3988229903595656698, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3988229903595656698, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
       propertyPath: m_LocalRotation.w
