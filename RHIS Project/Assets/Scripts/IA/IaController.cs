@@ -7,12 +7,13 @@ public class IaController : MonoBehaviour
     public float Vitesse = 50;  //Vitesse de déplacement
     public Vector2 Offset ;     //Vecteur qui nous permet de controller le déplacement
     public Animator anim;
-   
+    private string target = "Player";
     private int direction = 1;  //Pas d'incrément de la direction
     private int rotation;       //Position de l'IA lors du déplacement
     Vector3 rotationVector;
     [SerializeField] float minimumDistanceToAttack;
     [SerializeField] bool idling;
+    [SerializeField] int damage;
 
 
 
@@ -76,12 +77,11 @@ public class IaController : MonoBehaviour
         return false;
     }
 
-
     private void attack(string tag)
     {
         anim.SetTrigger("attack");
         GameObject[] goWithTag = GameObject.FindGameObjectsWithTag(tag);
-
+        goWithTag[0].GetComponent<PlayerStatus>().GetDamage(damage);
     }
 
 
@@ -104,19 +104,25 @@ public class IaController : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, wayPointPos, 5 * Time.deltaTime/10); 
     }
 
+    public void SetTarget(string newTarget)
+    {
+        target = newTarget;
+    }
 
 	void Update () 
     {
+        
+
         if(idling == true)
         {
-                 if(isNearPlayer("Player",20) == true)
+                 if(isNearPlayer(target,20) == true)
                 {
-                    if(isFarFromPlayer("Player",minimumDistanceToAttack) == true)
+                    if(isFarFromPlayer(target,minimumDistanceToAttack) == true)
                     {
                         moveToAttack();
                     }else
                     {
-                        attack("Player");
+                        attack(target);
                     }
                 }
         else
