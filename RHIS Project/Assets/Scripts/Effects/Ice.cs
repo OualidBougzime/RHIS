@@ -13,6 +13,7 @@ public class Ice : Effect
     // Update is called once per frame
     protected override void Update()
     {
-        sprite.color = new Color(0, 1, 1, 1);
+      transform.position = transform.parent.position;           
+      sprite.color = new Color(0, 1, 1, 1);
     }
 }

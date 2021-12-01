@@ -25,7 +25,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30daa9150b0f24a41a495cc9ce7e1faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 52094354591346546, guid: d5b812bbea770a149a24cc65b04991a9, type: 3}
+  effect: {fileID: 8750692089953265126, guid: 4841a2411c9f9c448b8cc6b013d0aad5, type: 3}
   poisoned: 0
   healthPointMax: 20
   slower: 0
@@ -58,15 +58,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 43.7
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 47.02
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311404, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_Name
-      value: Falsma Variant
+      value: Falsma
       objectReference: {fileID: 0}
     - target: {fileID: 7257016177419698565, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_AnchorMax.x
