@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class RhisPoison : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         gameObject.tag = "Player";
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 1);
 
