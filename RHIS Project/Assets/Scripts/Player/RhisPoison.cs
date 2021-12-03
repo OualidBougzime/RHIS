@@ -5,9 +5,11 @@ using UnityEngine;
 public class RhisPoison : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+    GameObject Effect;
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        Effect = Resources.Load("RhisPoisonCircle") as GameObject;
         gameObject.tag = "Player";
     }
 
