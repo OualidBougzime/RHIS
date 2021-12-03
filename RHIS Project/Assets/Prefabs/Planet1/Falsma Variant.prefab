@@ -25,8 +25,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30daa9150b0f24a41a495cc9ce7e1faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effect: {fileID: 8750692089953265126, guid: 4841a2411c9f9c448b8cc6b013d0aad5, type: 3}
   poisoned: 0
   healthPointMax: 20
+  slower: 0
+  BasicDamage: 10
+  FireDamage: 5
+  IceDamage: 5
+  SuperDamage: 20
 --- !u!1001 &8919712595737923323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38,13 +44,13 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5894490523661106554, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -62.778625
+    - target: {fileID: 2791457273548787943, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5894490523661106554, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -4.2800293
+    - target: {fileID: 2791457273548787943, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_RootOrder
@@ -52,11 +58,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.06
+      value: 43.7
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 50.72
+      value: 47.02
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -92,7 +98,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311404, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_Name
-      value: Falsma
+      value: Falsma Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002047464695311405, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: idling
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7257016177419698565, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_AnchorMax.x

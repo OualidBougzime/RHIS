@@ -85,11 +85,11 @@ public class IaController : MonoBehaviour
     }
 
 
-    private void moveToAttack()
+    private void moveToAttack(string tag)
     {       
         anim.SetTrigger("run");
-        var wayPoint = GameObject.Find("Rhis");
-        var wayPointPos = new Vector3(wayPoint.transform.position.x, wayPoint.transform.position.y, wayPoint.transform.position.z);
+        var wayPoint = GameObject.FindGameObjectWithTag(tag).transform;
+        var wayPointPos = new Vector3(wayPoint.position.x, wayPoint.position.y, wayPoint.position.z);
         if(wayPoint.transform.position.x < transform.position.x)
         {        
             rotation = -180;
@@ -113,13 +113,13 @@ public class IaController : MonoBehaviour
     {
         
 
-        if(idling == true)
-        {
-                 if(isNearPlayer(target,20) == true)
+        // if(idling == true)
+        // {
+                 if(isNearPlayer(target,7) == true)
                 {
                     if(isFarFromPlayer(target,minimumDistanceToAttack) == true)
                     {
-                        moveToAttack();
+                        moveToAttack(target);
                     }else
                     {
                         attack(target);
@@ -134,10 +134,10 @@ public class IaController : MonoBehaviour
 
             transform.position = transform.position + new Vector3(Vitesse * direction * Time.deltaTime/200, 0, 0); 
         }
-        }else
-        {
-                    anim.SetTrigger("idle");
-        }
+        // }else
+        // {
+        //             anim.SetTrigger("idle");
+        // }
         
     }
 }

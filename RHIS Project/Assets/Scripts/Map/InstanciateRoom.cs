@@ -11,6 +11,7 @@ public class InstanciateRoom : MonoBehaviour
     [SerializeField] [Range(0.5f, 5)] private float ySpacing = 1;
     private int nbrRoom;
     private Vector3Int[,] listOfPos;
+    private bool firstRoom = false;
     [SerializeField] private int exitRoom = 1;
     private List<GameObject> exitRooms = new();
     [SerializeField] private int bossRoom = 1;
@@ -30,6 +31,7 @@ public class InstanciateRoom : MonoBehaviour
         battleRoom = -5
     }
 
+
     [Header("Rule Sprite")]
     [SerializeField] private IsometricRuleTile water;
     [SerializeField] private IsometricRuleTile path;
@@ -43,6 +45,7 @@ public class InstanciateRoom : MonoBehaviour
     private Tilemap obstaclesStageTilemap;
     private Tilemap pathStageTilemap;
     private List<List<Vector3Int>> doors = new();
+    private List<Vector3Int> groundRoom = new();
 
     private PathFinder pathfinder;
 
@@ -62,11 +65,36 @@ public class InstanciateRoom : MonoBehaviour
         {
             GameObject room = CreateRoom(sizeMax);
             //room.transform.parent = stage.transform; Disabled to prevent data corruption
-            RandomDestroyTilesFromRoom(room);
+            AffectTilemapFromRoom(room);
         }
 
-        InstanciatePath(pathfinder.createAllPaths(doors));
+        InstanciatePath(pathfinder.CreateAllPaths(doors, groundRoom, groundStageTilemap));
     }
+
+    /*private List<Vector3Int> GetGround()
+    {
+        List<Vector3Int> ground = new();
+
+        foreach (Tilemap tilemap in GetComponentsInChildren<Tilemap>())
+        {
+            print("a");
+            if (tilemap.CompareTag("Ground"))
+            {
+                for (int i = tilemap.origin.x; i < tilemap.origin.x + tilemap.size.x; ++i)
+                {
+                    for (int j = tilemap.origin.y; j < tilemap.origin.y + tilemap.size.y; ++j)
+                    {
+                        Vector3Int v = new(i, j);
+                        if (tilemap.HasTile(v))
+                        {
+                            ground.Add(PosToStagePos(v, tilemap.GetComponent<Transform>().position));
+                        }
+                    }
+                }
+            }
+        }
+        return ground;
+    }*/
 
     private void InstanciatePath(List<Vector3Int> path)
     {
@@ -222,13 +250,111 @@ public class InstanciateRoom : MonoBehaviour
     private GameObject CreateRoom(Vector3Int sizeMax)
     {
         GameObject room = ChooseRoom();
-
-        Vector2Int pos =  GetFreePos();
-        //TODO: ValidateNewPos(pos,Room)
+        Vector2Int pos;
+        do
+        {
+             pos = GetFreePos();
+        } while (!ValidateNewPos(pos, room));
         
         DeletPos(pos, room);
 
         return Instantiate(room, new Vector3Int(listOfPos[pos.x,pos.y].x, listOfPos[pos.x, pos.y].y) + GetRandPos(sizeMax,room), Quaternion.identity);
+    }
+
+    private bool ValidateNewPos(Vector2Int pos, GameObject room)
+    {
+        List<Vector2Int> neighbours = GetNeighbours(pos);
+        switch (room.tag)
+        {
+            case "ExitRoom":
+                firstRoom = true;
+                return true;
+            case "BossRoom":
+                if (!firstRoom)
+                {
+                    firstRoom = true;
+                    return true;
+                }
+                return Contains(neighbours, E.exitRoom);
+            case "StartRoom":
+                if (!firstRoom)
+                {
+                    firstRoom = true;
+                    return true;
+                }
+                return !Contains(neighbours, E.bossRoom);
+            case "TreasureRoom":
+                if (!firstRoom)
+                {
+                    firstRoom = true;
+                    return true;
+                }
+                return !Contains(neighbours, E.bossRoom) && !Contains(neighbours, E.startRoom);
+            default:
+                if (!firstRoom)
+                {
+                    Debug.Log("true");
+                    firstRoom = true;
+                    return true;
+                }
+                return Contains(neighbours);
+        }
+    }
+
+    private bool Contains(List<Vector2Int> neighbours)
+    {
+        foreach (Vector2Int n in neighbours)
+        {
+            if (listOfPos[n.x, n.y].z != 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool Contains(List<Vector2Int> neighbours, E tag)
+    {
+        foreach(Vector2Int n in neighbours)
+        {
+            if(listOfPos[n.x,n.y].z == (int)tag)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private List<Vector2Int> GetNeighbours(Vector2Int pos)
+    {
+        List<Vector2Int> neighbours = new();
+
+        for (int x = pos.x - 1; x <= pos.x + 1; ++x)
+        {
+            if (x < 0 || x > nbrRoom / 2 - 1)
+            {
+                continue;
+            }
+            for (int y = pos.y - 1; y <= pos.y + 1; ++y)
+            {
+                if (y < 0 || y > nbrRoom / 2 - 1)
+                {
+                    continue;
+                }
+                if(x == pos.x && y == pos.y)
+                {
+                    continue;
+                }
+                neighbours.Add(new Vector2Int(x, y));
+            }
+        }
+        string n = "";
+        foreach (Vector2Int v in neighbours)
+        {
+            n +=v + ", ";
+        }
+        Debug.Log("room : " + pos + ", voisins : " + n);
+        return neighbours;
     }
 
     private Vector3Int GetRandPos(Vector3Int sizeMax, GameObject room)
@@ -263,7 +389,7 @@ public class InstanciateRoom : MonoBehaviour
         return new Vector2Int(x, y);
     }
 
-    private void RandomDestroyTilesFromRoom(GameObject room)
+    private void AffectTilemapFromRoom(GameObject room)
     {
         Tilemap[] tilemaps = room.GetComponentsInChildren<Tilemap>();
         foreach (Tilemap tilemap in tilemaps)
@@ -280,6 +406,25 @@ public class InstanciateRoom : MonoBehaviour
             else if (tilemap.CompareTag("Door"))
             {
                 AddDoors(tilemap);
+            }
+            else if (tilemap.CompareTag("Ground"))
+            {
+                AddGround(tilemap);
+            }
+        }
+    }
+
+    private void AddGround(Tilemap tilemap)
+    {
+        for (int i = tilemap.origin.x; i < tilemap.origin.x + tilemap.size.x; ++i)
+        {
+            for (int j = tilemap.origin.y; j < tilemap.origin.y + tilemap.size.y; ++j)
+            {
+                Vector3Int v = new(i, j);
+                if (tilemap.HasTile(v))
+                {
+                    groundRoom.Add(PosToStagePos(v, tilemap.GetComponent<Transform>().position));
+                }
             }
         }
     }
@@ -364,11 +509,14 @@ public class InstanciateRoom : MonoBehaviour
             else
             {
                 RandomEnemies r = tilemap.GetTile<RandomEnemies>(pos);
-                if (r.GetChanceToSpawn() <= Random.Range(0, 100))
+                if (r.GetChanceToSpawn() >= Random.Range(0, 100))
                 {
                     Object enemy = r.GetEnemy();
-                    print(pos);
                     Instantiate(enemy, RoomPosToFlatPos(pos) + tilemap.GetComponentInParent<Transform>().position, Quaternion.identity);
+                    if (enemy.name == "Rhis Variant")
+                    {
+                        Debug.Log("pos " + pos + " flatPos " + RoomPosToFlatPos(pos)+ " position " + (pos + tilemap.GetComponentInParent<Transform>().position));
+                    }
                     //Instantiate(enemy, pos, Quaternion.identity);
                 }
                 tilemap.SetTile(pos, null);
@@ -378,7 +526,9 @@ public class InstanciateRoom : MonoBehaviour
 
     private Vector3 RoomPosToFlatPos(Vector3Int v)
     {
-        return new Vector3(v.x / 2f, v.y / 4f);
+        float fX = v.x - v.y;
+        float fY = v.x + v.y + 1f;
+        return new Vector3(fX/2f,fY/4f);
     }
 
     private GameObject ChooseRoom()
