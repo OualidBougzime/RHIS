@@ -42,7 +42,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1250633769277312145, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_Name
-      value: 'Dulvog '
+      value: Dulvog  Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312145, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_TagString
@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 1edb7722a0578448ababe26a00fadc5b, type: 2}
+    - target: {fileID: 1250633769277312149, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
+      propertyPath: idling
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2050734606778957080, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

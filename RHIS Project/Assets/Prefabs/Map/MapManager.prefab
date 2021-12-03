@@ -47,14 +47,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rooms:
   - {fileID: 5672730836890018052, guid: 8249010a8b9f8d8428637443cf1eeba5, type: 3}
-  exitRoom: 0
-  bossRoom: 0
-  startRoom: 0
-  treasureRoom: 0
-  battleRoom: 10
+  - {fileID: 5672730836890018052, guid: 57d1ea1bdee644e45b38e705af393db0, type: 3}
+  - {fileID: 5672730836890018052, guid: bde47d6bcea19354ea033f9b2cb330f9, type: 3}
+  - {fileID: 5672730836890018052, guid: 2138386b3e6847b48a75bdb7198ac170, type: 3}
+  - {fileID: 5672730836890018052, guid: f0a6f104025434643863b9c14c5c4bbd, type: 3}
+  xSpacing: 1
+  ySpacing: 1
+  exitRoom: 1
+  bossRoom: 1
+  startRoom: 1
+  treasureRoom: 1
+  battleRoom: 6
   water: {fileID: 11400000, guid: 0c6300bfb2a78b142be3e9451625145e, type: 2}
   path: {fileID: 11400000, guid: fe8c25bf98523de479ae51d6d437d896, type: 2}
-  stage: {fileID: 0}
+  stage: {fileID: 4492151794671311293, guid: 59ba740f2101e1249b20792db11efd1d, type: 3}
+  fill: 0
+  ground: 0
 --- !u!212 &5838041752849563898
 SpriteRenderer:
   m_ObjectHideFlags: 0

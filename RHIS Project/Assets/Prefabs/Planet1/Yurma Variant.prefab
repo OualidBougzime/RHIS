@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 420386424839550552}
+    - target: {fileID: -3627079700713782633, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
+      propertyPath: idling
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2224730868255605748, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -162,7 +166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6722169404153599122, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_Name
-      value: Yurma
+      value: Yurma Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}

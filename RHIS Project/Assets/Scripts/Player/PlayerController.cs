@@ -13,11 +13,12 @@ public class PlayerController : MonoBehaviour
     private int rotation;
     Vector3 rotationVector;
 	public Animator anim;
+	[SerializeField] int dashPossibility = 1000;
 
 
 
     private Rigidbody myRigidbody;
-    private Vector3Int speed;
+    private Vector3 speed;
 
 	//Adding DontDestroyOnLoad
 	
@@ -29,66 +30,83 @@ public class PlayerController : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody>(); 
     }
 
+	Vector3 cartesianToIsometric(Vector3 cartesian){
+		var isometric = new Vector3();
+		isometric.x = cartesian.x - cartesian.y;
+		isometric.y = (cartesian.x + cartesian.y) / 2;
+		return isometric;
+
+	}
+
     void goLeft(){
     	key = 'Q';
 		anim.SetTrigger("run");
     	direction = -1;
-    	rotation = -180;
+		rotation = -180;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
         //transform.position = transform.position + new Vector3(vitesse * direction * Time.deltaTime/20, 0, 0); 
-        speed += new Vector3Int(direction * vitesse, 0);
+        speed += new Vector3(direction * vitesse, 0);
     }
 
     void goRight(){
     	key = 'D';
 		anim.SetTrigger("run");
     	direction = 1;
-    	rotation = 0;
+		rotation = 0;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
         //transform.position = transform.position + new Vector3(vitesse * direction * Time.deltaTime/20, 0, 0); 
-        speed += new Vector3Int(direction * vitesse, 0);
+        speed += new Vector3(direction * vitesse, 0);
     }
 
     void goUp(){
     	key = 'Z';
 		anim.SetTrigger("run");
         direction = 1;
+		rotation = -180;
+        rotationVector.y = rotation;
+        transform.rotation = Quaternion.Euler(rotationVector);
     	//transform.position = transform.position + new Vector3(0, vitesse * direction * Time.deltaTime/20, 0);
-        speed += new Vector3Int(0, direction * vitesse);
+        speed += new Vector3(0, direction * vitesse);
     }
 
     void goDown(){
     	key = 'S';
 		anim.SetTrigger("run");
         direction = -1;
+		rotation = 0;
+        rotationVector.y = rotation;
+        transform.rotation = Quaternion.Euler(rotationVector);
         //transform.position = transform.position + new Vector3(0, vitesse * direction * Time.deltaTime/20, 0);
-        speed += new Vector3Int(0, direction * vitesse);	
+        speed += new Vector3(0, direction * vitesse);	
     }
 
     void dash(){
-		anim.SetTrigger("dash");
-    	var vitesseDash = 50;
-    	if(key == 'Q'){
-    		direction = -5;
-    		transform.position = transform.position + new Vector3(vitesseDash * direction * Time.deltaTime/20, 0, 0);
-    	}
+		if(dashPossibility == 1000){
+			anim.SetTrigger("dash");
+			var vitesseDash = 200;
+			if(key == 'Q'){
+				direction = -5;
+				transform.position = transform.position + cartesianToIsometric(new Vector3(vitesseDash * direction * Time.deltaTime/20, 0, 0));
+			}
 
-    	if(key == 'D'){
-    		direction = 5;
-    		transform.position = transform.position + new Vector3(vitesseDash * direction * Time.deltaTime/20, 0, 0);
-    	}
+			if(key == 'D'){
+				direction = 5;
+				transform.position = transform.position + cartesianToIsometric(new Vector3(vitesseDash * direction * Time.deltaTime/20, 0, 0));
+			}
 
-    	if(key == 'Z'){
-    		direction = 5;
-    		transform.position = transform.position + new Vector3(0, vitesseDash * direction * Time.deltaTime/20, 0);
-    	}
+			if(key == 'Z'){
+				direction = 5;
+				transform.position = transform.position + cartesianToIsometric(new Vector3(0, vitesseDash * direction * Time.deltaTime/20, 0));
+			}
 
-    	if(key == 'S'){
-    		direction = -5;
-    		transform.position = transform.position + new Vector3(0, vitesseDash * direction * Time.deltaTime/20, 0);
-    	}
+			if(key == 'S'){
+				direction = -5;
+				transform.position = transform.position + cartesianToIsometric(new Vector3(0, vitesseDash * direction * Time.deltaTime/20, 0));
+			}
+			dashPossibility = 0;
+		}
     	
     }
 
@@ -128,7 +146,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed = new Vector3Int(0, 0);
+		if(dashPossibility<1000)
+			dashPossibility+=1;
+        speed = new Vector3(0, 0);
     	if(Input.anyKey){
 			if(Input.GetKey(KeyCode.Q)){
     		goLeft();
@@ -153,6 +173,6 @@ public class PlayerController : MonoBehaviour
 		{
 			idle();
 		}
-        myRigidbody.velocity = speed;
+        myRigidbody.velocity = cartesianToIsometric(speed/10);
     }
 }

@@ -142,7 +142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3287430917894077264, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_Name
-      value: Rihar
+      value: Rihar Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3758913229232145311, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -156,6 +156,10 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 1896024101813245740}
+    - target: {fileID: 5088049256709226159, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
+      propertyPath: idling
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8512210049437078269, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
