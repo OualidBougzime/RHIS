@@ -15,6 +15,7 @@ TagManager:
   - Path
   - Door
   - Enemies
+  - Backdrops
   layers:
   - Default
   - TransparentFX

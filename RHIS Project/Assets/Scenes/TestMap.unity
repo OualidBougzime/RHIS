@@ -3589,6 +3589,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4492151794671311293, guid: 59ba740f2101e1249b20792db11efd1d, type: 3}
     - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
+      propertyPath: ground
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
       propertyPath: bossRoom
       value: 1
       objectReference: {fileID: 0}

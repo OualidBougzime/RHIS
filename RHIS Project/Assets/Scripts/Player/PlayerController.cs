@@ -7,12 +7,17 @@ public class PlayerController : MonoBehaviour
 	public Weapon PlayerWeapon;
 	public GameObject Projectile;
 	public int Force;
-    private int vitesse = 20;
+    [SerializeField] private int vitesse = 1;
     private static int direction;
     private static char key;
     private int rotation;
     Vector3 rotationVector;
 	public Animator anim;
+
+
+
+    private Rigidbody myRigidbody;
+    private Vector3Int speed;
 
 	//Adding DontDestroyOnLoad
 	
@@ -21,7 +26,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
     	rotationVector = transform.rotation.eulerAngles;
-        
+        myRigidbody = GetComponent<Rigidbody>(); 
     }
 
     void goLeft(){
@@ -31,7 +36,8 @@ public class PlayerController : MonoBehaviour
     	rotation = -180;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
-    	transform.position = transform.position + new Vector3(vitesse * direction * Time.deltaTime/20, 0, 0); 
+        //transform.position = transform.position + new Vector3(vitesse * direction * Time.deltaTime/20, 0, 0); 
+        speed += new Vector3Int(direction * vitesse, 0);
     }
 
     void goRight(){
@@ -41,21 +47,24 @@ public class PlayerController : MonoBehaviour
     	rotation = 0;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
-    	transform.position = transform.position + new Vector3(vitesse * direction * Time.deltaTime/20, 0, 0); 
+        //transform.position = transform.position + new Vector3(vitesse * direction * Time.deltaTime/20, 0, 0); 
+        speed += new Vector3Int(direction * vitesse, 0);
     }
 
     void goUp(){
     	key = 'Z';
 		anim.SetTrigger("run");
         direction = 1;
-    	transform.position = transform.position + new Vector3(0, vitesse * direction * Time.deltaTime/20, 0);     	
+    	//transform.position = transform.position + new Vector3(0, vitesse * direction * Time.deltaTime/20, 0);
+        speed += new Vector3Int(0, direction * vitesse);
     }
 
     void goDown(){
     	key = 'S';
 		anim.SetTrigger("run");
         direction = -1;
-    	transform.position = transform.position + new Vector3(0, vitesse * direction * Time.deltaTime/20, 0);     	
+        //transform.position = transform.position + new Vector3(0, vitesse * direction * Time.deltaTime/20, 0);
+        speed += new Vector3Int(0, direction * vitesse);	
     }
 
     void dash(){
@@ -119,6 +128,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        speed = new Vector3Int(0, 0);
     	if(Input.anyKey){
 			if(Input.GetKey(KeyCode.Q)){
     		goLeft();
@@ -143,6 +153,6 @@ public class PlayerController : MonoBehaviour
 		{
 			idle();
 		}
-        
+        myRigidbody.velocity = speed;
     }
 }

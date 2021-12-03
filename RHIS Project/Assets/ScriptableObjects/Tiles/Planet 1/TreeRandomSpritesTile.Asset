@@ -31,7 +31,7 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 1
-  m_InstancedGameObject: {fileID: 0}
+  m_InstancedGameObject: {fileID: 8923350831986590427, guid: c5bf33ea3c3f8ce419c5899c11196793, type: 3}
   m_Flags: 1
   m_ColliderType: 1
   sprites:
@@ -43,4 +43,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3bfe7999e602d47a9bfe44f7a0d48349, type: 3}
   - {fileID: 21300000, guid: a1063dcf6a5994cc5ae104ceffa216ad, type: 3}
   isSpriteLocked: 1
-  chanceToSpawn: 47
+  chanceToSpawn: 100
