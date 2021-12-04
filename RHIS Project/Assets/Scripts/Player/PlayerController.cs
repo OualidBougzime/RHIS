@@ -125,11 +125,10 @@ public class PlayerController : MonoBehaviour
 
 	void fire()
 	{
-		anim.SetTrigger("fire");
-
 		if (PlayerWeapon != null && PlayerWeapon.AmmoInMagazine != 0)
 		{
-			StartCoroutine(PlayerWeapon.ShootWeapon());
+			anim.SetTrigger("fire");
+			PlayerWeapon.AmmoInMagazine--;
 
 			//GetComponent<AudioSource>().PlayOneShot(SoundTir);
 			GameObject bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
@@ -145,7 +144,6 @@ public class PlayerController : MonoBehaviour
 	{
 		if (PlayerWeapon != null)
 		{
-			//GetComponent<AudioSource>().PlayOneShot(SoundReload);
 			PlayerWeapon.ReloadWeapon();
 		}
 	}
@@ -173,6 +171,9 @@ public class PlayerController : MonoBehaviour
 			}
 			if(Input.GetKey(KeyCode.Space)){
 				dash();
+			}
+			if(Input.GetKey(KeyCode.R)){
+				reload();
 			}
 			if(Input.GetButtonDown("Fire1")){
 				fire();
