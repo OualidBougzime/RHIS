@@ -144,6 +144,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rihar Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3287430917894077264, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
+      propertyPath: m_TagString
+      value: Enemies
+      objectReference: {fileID: 0}
     - target: {fileID: 3758913229232145311, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

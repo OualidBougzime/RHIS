@@ -66,35 +66,34 @@ public class InstanciateRoom : MonoBehaviour
             GameObject room = CreateRoom(sizeMax);
             //room.transform.parent = stage.transform; Disabled to prevent data corruption
             AffectTilemapFromRoom(room);
+            LinkEnemyToDoors(room);
         }
 
         InstanciatePath(pathfinder.CreateAllPaths(doors, groundRoom, groundStageTilemap));
     }
 
-    /*private List<Vector3Int> GetGround()
+    private void LinkEnemyToDoors(GameObject room)
     {
-        List<Vector3Int> ground = new();
+        List<DoorManagment> doors = new();
+        List<EnemyStatus> enemies = new();
 
-        foreach (Tilemap tilemap in GetComponentsInChildren<Tilemap>())
+        for (int i = 0; i < room.transform.childCount; ++i)
         {
-            print("a");
-            if (tilemap.CompareTag("Ground"))
-            {
-                for (int i = tilemap.origin.x; i < tilemap.origin.x + tilemap.size.x; ++i)
-                {
-                    for (int j = tilemap.origin.y; j < tilemap.origin.y + tilemap.size.y; ++j)
-                    {
-                        Vector3Int v = new(i, j);
-                        if (tilemap.HasTile(v))
-                        {
-                            ground.Add(PosToStagePos(v, tilemap.GetComponent<Transform>().position));
-                        }
-                    }
-                }
-            }
+            Transform c1 = room.transform.GetChild(i);
+            enemies.AddRange(c1.GetComponents<EnemyStatus>());
+            doors.AddRange(c1.GetComponentsInChildren<DoorManagment>());
         }
-        return ground;
-    }*/
+        EnemiesCounter counter = new(enemies.Count, doors);
+
+        foreach (EnemyStatus e in enemies)
+        {
+            e.SetCounter(counter);
+        }
+        foreach(DoorManagment d in doors)
+        {
+            d.SetCounter(counter);
+        }
+    }
 
     private void InstanciatePath(List<Vector3Int> path)
     {
@@ -258,7 +257,7 @@ public class InstanciateRoom : MonoBehaviour
         
         DeletPos(pos, room);
 
-        return Instantiate(room, new Vector3Int(listOfPos[pos.x,pos.y].x, listOfPos[pos.x, pos.y].y) + GetRandPos(sizeMax,room), Quaternion.identity);
+        return Instantiate(room, new Vector3Int(listOfPos[pos.x,pos.y].x, listOfPos[pos.x, pos.y].y) + GetRandPos(sizeMax,room), Quaternion.identity);//TODO: RandPos
     }
 
     private bool ValidateNewPos(Vector2Int pos, GameObject room)
@@ -353,7 +352,7 @@ public class InstanciateRoom : MonoBehaviour
         {
             n +=v + ", ";
         }
-        Debug.Log("room : " + pos + ", voisins : " + n);
+        //Debug.Log("room : " + pos + ", voisins : " + n);
         return neighbours;
     }
 
@@ -454,6 +453,7 @@ public class InstanciateRoom : MonoBehaviour
                 if (tilemap.HasTile(new Vector3Int(i,j)))
                 {
                     listDoors.Add(PosToStagePos(new Vector3Int(i, j),tilemap.GetComponent<Transform>().position));
+                    tilemap.GetTile<RandomSpritesTile>(new Vector3Int(i, j)).sprite = null;
                 }
             }
         }
@@ -469,7 +469,7 @@ public class InstanciateRoom : MonoBehaviour
             for (int y = tilemap.origin.y; y < tilemap.origin.y + tilemap.size.y; ++y)
             {
                 Vector3Int pos = new(x, y);
-                RandomDestroyTile(tilemap, pos);
+                RandomDestroyTile(tilemap, pos, room);
                 stagePos = PosToStagePos(pos, roomPos);
                 DestroyStage(tilemap, pos, stagePos);
             }
@@ -494,7 +494,7 @@ public class InstanciateRoom : MonoBehaviour
         }
     }
 
-    private void RandomDestroyTile(Tilemap tilemap, Vector3Int pos)
+    private void RandomDestroyTile(Tilemap tilemap, Vector3Int pos, GameObject room)
     {
         if (tilemap.HasTile(pos))
         {
@@ -511,13 +511,13 @@ public class InstanciateRoom : MonoBehaviour
                 RandomEnemies r = tilemap.GetTile<RandomEnemies>(pos);
                 if (r.GetChanceToSpawn() >= Random.Range(0, 100))
                 {
-                    Object enemy = r.GetEnemy();
-                    Instantiate(enemy, RoomPosToFlatPos(pos) + tilemap.GetComponentInParent<Transform>().position, Quaternion.identity);
+                    GameObject enemy = r.GetEnemy();
+                    GameObject newEnemy = Instantiate(enemy, RoomPosToFlatPos(pos) + tilemap.GetComponentInParent<Transform>().position, Quaternion.identity);
+                    newEnemy.transform.parent = room.transform;
                     if (enemy.name == "Rhis Variant")
                     {
-                        Debug.Log("pos " + pos + " flatPos " + RoomPosToFlatPos(pos)+ " position " + (pos + tilemap.GetComponentInParent<Transform>().position));
+                        //Debug.Log("pos " + pos + " flatPos " + RoomPosToFlatPos(pos)+ " position " + (pos + tilemap.GetComponentInParent<Transform>().position));
                     }
-                    //Instantiate(enemy, pos, Quaternion.identity);
                 }
                 tilemap.SetTile(pos, null);
             }

@@ -45,7 +45,7 @@ public class Room : ScriptableObject
             throw new Exception("Faut mettre une porte à la salle");
         }
         return 1;
-        int random = UnityEngine.Random.Range(0, 100);
+        /*int random = UnityEngine.Random.Range(0, 100);
         switch (nbrDoors)
         {
             case 2:
@@ -95,7 +95,7 @@ public class Room : ScriptableObject
                 }
             default:
                 return 1;
-        }
+        }*/
     }
 
     internal bool HasOpenDoor()

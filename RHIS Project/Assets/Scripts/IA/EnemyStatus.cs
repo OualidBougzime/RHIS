@@ -15,6 +15,7 @@ public class EnemyStatus : MonoBehaviour
 
     int healthPoint;
 
+    private EnemiesCounter counter;
     //Resources.load("Prefabs/truc") as GameObject;
 
     // Start is called before the first frame update
@@ -54,6 +55,7 @@ public class EnemyStatus : MonoBehaviour
 
     public void Death()
     {
+        counter.KillEnemy();
         Destroy(gameObject);
     }
 
@@ -116,4 +118,8 @@ public class EnemyStatus : MonoBehaviour
     }
 
     
+    public void SetCounter(EnemiesCounter counter)
+    {
+        this.counter = counter;
+    }
 }

@@ -168,6 +168,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yurma Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6722169404153599122, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
+      propertyPath: m_TagString
+      value: Enemies
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
 --- !u!1 &7732438922532646343 stripped

@@ -100,6 +100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Falsma Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6002047464695311404, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: m_TagString
+      value: Enemies
+      objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311405, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: idling
       value: 1
