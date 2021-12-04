@@ -49,6 +49,8 @@ public class InstanciateRoom : MonoBehaviour
 
     private PathFinder pathfinder;
 
+    [SerializeField] private GameObject rhis;
+
 
 
 
@@ -512,11 +514,16 @@ public class InstanciateRoom : MonoBehaviour
                 if (r.GetChanceToSpawn() >= Random.Range(0, 100))
                 {
                     GameObject enemy = r.GetEnemy();
-                    GameObject newEnemy = Instantiate(enemy, RoomPosToFlatPos(pos) + tilemap.GetComponentInParent<Transform>().position, Quaternion.identity);
-                    newEnemy.transform.parent = room.transform;
+                    
                     if (enemy.name == "Rhis Variant")
                     {
+                        rhis.GetComponent<Transform>().position = RoomPosToFlatPos(pos) + tilemap.GetComponentInParent<Transform>().position;
                         //Debug.Log("pos " + pos + " flatPos " + RoomPosToFlatPos(pos)+ " position " + (pos + tilemap.GetComponentInParent<Transform>().position));
+                    }
+                    else
+                    {
+                        GameObject newEnemy = Instantiate(enemy, RoomPosToFlatPos(pos) + tilemap.GetComponentInParent<Transform>().position, Quaternion.identity);
+                        newEnemy.transform.parent = room.transform;
                     }
                 }
                 tilemap.SetTile(pos, null);
