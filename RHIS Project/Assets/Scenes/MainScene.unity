@@ -342,6 +342,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rhis Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3738275766855972440, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+      propertyPath: range
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3960131020231934908, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -350,5 +354,41 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7755754655031964048, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+      propertyPath: vitesse
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066995077249101613, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+    - target: {fileID: 9066995077249101613, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066995077249101613, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066995077249101613, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066995077249101613, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 473237049
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066995077249101613, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066995077249101613, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066995077249101613, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 527825f3bdc85de43bf007040605d335, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}

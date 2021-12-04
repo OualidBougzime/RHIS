@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] int dashPossibility = 1000;
 
 
-
+	private Transform poisonCircle;
     private Rigidbody myRigidbody;
     private Vector3 speed;
 
@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
     	rotationVector = transform.rotation.eulerAngles;
-        myRigidbody = GetComponent<Rigidbody>(); 
+        myRigidbody = GetComponent<Rigidbody>();
+		poisonCircle = transform.GetChild(1).GetComponentInChildren<Transform>();
     }
 
 	Vector3 cartesianToIsometric(Vector3 cartesian){
@@ -45,8 +46,9 @@ public class PlayerController : MonoBehaviour
 		rotation = -180;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
-        //transform.position = transform.position + new Vector3(vitesse * direction * Time.deltaTime/20, 0, 0); 
-        speed += new Vector3(direction * vitesse, 0);
+		poisonCircle.rotation = Quaternion.identity;
+		//transform.position = transform.position + new Vector3(vitesse * direction * Time.deltaTime/20, 0, 0); 
+		speed += new Vector3(direction * vitesse, 0);
     }
 
     void goRight(){
@@ -56,8 +58,9 @@ public class PlayerController : MonoBehaviour
 		rotation = 0;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
-        //transform.position = transform.position + new Vector3(vitesse * direction * Time.deltaTime/20, 0, 0); 
-        speed += new Vector3(direction * vitesse, 0);
+		poisonCircle.rotation = Quaternion.identity;
+		//transform.position = transform.position + new Vector3(vitesse * direction * Time.deltaTime/20, 0, 0); 
+		speed += new Vector3(direction * vitesse, 0);
     }
 
     void goUp(){
@@ -67,8 +70,9 @@ public class PlayerController : MonoBehaviour
 		rotation = -180;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
-    	//transform.position = transform.position + new Vector3(0, vitesse * direction * Time.deltaTime/20, 0);
-        speed += new Vector3(0, direction * vitesse);
+		poisonCircle.rotation = Quaternion.identity;
+		//transform.position = transform.position + new Vector3(0, vitesse * direction * Time.deltaTime/20, 0);
+		speed += new Vector3(0, direction * vitesse);
     }
 
     void goDown(){
@@ -78,6 +82,7 @@ public class PlayerController : MonoBehaviour
 		rotation = 0;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
+		poisonCircle.rotation = Quaternion.identity;
         //transform.position = transform.position + new Vector3(0, vitesse * direction * Time.deltaTime/20, 0);
         speed += new Vector3(0, direction * vitesse);	
     }
