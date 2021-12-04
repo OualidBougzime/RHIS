@@ -11,8 +11,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.8318367
+  m_Center: {x: 0.16113281, y: -0.08054733, z: 0}
 --- !u!114 &136352848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25,7 +25,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30daa9150b0f24a41a495cc9ce7e1faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 8750692089953265126, guid: 4841a2411c9f9c448b8cc6b013d0aad5, type: 3}
   poisoned: 0
   healthPointMax: 20
   slower: 0
@@ -40,6 +39,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3745584291278501693, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: m_Constraints
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 2191640507547301577, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_RootOrder
       value: 0

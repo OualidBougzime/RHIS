@@ -38,6 +38,7 @@ public class DoorManagment : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             counter.CloseDoors();
+            counter.EnableEnemies();
         }
     }
 }

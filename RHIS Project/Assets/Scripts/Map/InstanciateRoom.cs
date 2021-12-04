@@ -78,6 +78,7 @@ public class InstanciateRoom : MonoBehaviour
     {
         List<DoorManagment> doors = new();
         List<EnemyStatus> enemies = new();
+        List<IaController> ia = new();
 
         for (int i = 0; i < room.transform.childCount; ++i)
         {
@@ -85,7 +86,13 @@ public class InstanciateRoom : MonoBehaviour
             enemies.AddRange(c1.GetComponents<EnemyStatus>());
             doors.AddRange(c1.GetComponentsInChildren<DoorManagment>());
         }
-        EnemiesCounter counter = new(enemies.Count, doors);
+
+        foreach (EnemyStatus enemy in enemies)
+        {
+            ia.Add(enemy.GetComponent<IaController>());
+        }
+
+        EnemiesCounter counter = new(enemies.Count, doors, ia);
 
         foreach (EnemyStatus e in enemies)
         {
