@@ -2,7 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour
+public enum WeaponEffect
+{
+    DEFAULT,
+    POISON,
+    SUPER_POISON,
+    FIRE,
+    ICE,
+    RAGE
+}
+
+public class Weapon : MonoBehaviour
 {
     [SerializeField] public string Name;
     [SerializeField] public float FiringRate;
@@ -12,6 +22,8 @@ public abstract class Weapon : MonoBehaviour
 
     [SerializeField] public int MagazineSize;
     [SerializeField] public int MaxAmmo;
+
+    [SerializeField] public WeaponEffect Effect;
 
     public int TotalAmmo;
     public int AmmoInMagazine;
@@ -30,16 +42,6 @@ public abstract class Weapon : MonoBehaviour
         {
             AmmoInMagazine += TotalAmmo;
             TotalAmmo = 0;
-        }
-    }
-
-    public IEnumerator ShootWeapon()
-    {
-        if (AmmoInMagazine > 0)
-        {
-            AmmoInMagazine--;
-            float waitTime = (1/FiringRate) * 3; // à tester selon les valeurs de cadence de tir
-            yield return new WaitForSeconds(waitTime);
         }
     }
 

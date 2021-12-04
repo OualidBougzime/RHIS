@@ -178,11 +178,10 @@ public class PlayerController : MonoBehaviour
 
 	void fire()
 	{
-		anim.SetTrigger("fire");
-
-		//if (PlayerWeapon != null && PlayerWeapon.AmmoInMagazine != 0)
-		//{
-			//StartCoroutine(PlayerWeapon.ShootWeapon());
+		if (PlayerWeapon != null && PlayerWeapon.AmmoInMagazine != 0)
+		{
+			anim.SetTrigger("fire");
+			PlayerWeapon.AmmoInMagazine--;
 
 			GameObject Bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
 			if(key==' '){
@@ -220,9 +219,44 @@ public class PlayerController : MonoBehaviour
 	{
 		if (PlayerWeapon != null)
 		{
-			//GetComponent<AudioSource>().PlayOneShot(SoundReload);
 			PlayerWeapon.ReloadWeapon();
 		}
 	}
 
+
+    // Update is called once per frame
+    void Update()
+    {
+		if(dashPossibility<1000)
+			dashPossibility+=1;
+        speed = new Vector3(0, 0);
+    	if(Input.anyKey){
+			if(Input.GetKey(KeyCode.Q)){
+    		goLeft();
+    		}
+			if(Input.GetKey(KeyCode.D)){
+				goRight();
+			}
+
+			if(Input.GetKey(KeyCode.Z)){
+				goUp();
+			}
+			if(Input.GetKey(KeyCode.S)){
+				goDown();
+			}
+			if(Input.GetKey(KeyCode.Space)){
+				dash();
+			}
+			if(Input.GetKey(KeyCode.R)){
+				reload();
+			}
+			if(Input.GetButtonDown("Fire1")){
+				fire();
+			}
+		}else
+		{
+			idle();
+		}
+        myRigidbody.velocity = cartesianToIsometric(speed/10);
+    }
 }
