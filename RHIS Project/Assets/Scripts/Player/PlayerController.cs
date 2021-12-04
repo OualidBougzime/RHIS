@@ -15,14 +15,11 @@ public class PlayerController : MonoBehaviour
 	public Animator anim;
 	[SerializeField] int dashPossibility = 1000;
 
-<<<<<<< HEAD
 
 	private Transform poisonCircle;
     private Rigidbody myRigidbody;
     private Vector3 speed;
 
-=======
->>>>>>> 77f40a4 (Fixing Reload exception)
 	//Adding DontDestroyOnLoad
 	
 
