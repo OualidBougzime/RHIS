@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,26 +8,83 @@ public class IaController : MonoBehaviour
     public float Vitesse = 50;  //Vitesse de déplacement
     public Vector2 Offset ;     //Vecteur qui nous permet de controller le déplacement
     public Animator anim;
-   
+    private string target = "Player";
     private int direction = 1;  //Pas d'incrément de la direction
     private int rotation;       //Position de l'IA lors du déplacement
     Vector3 rotationVector;
     [SerializeField] float minimumDistanceToAttack;
     [SerializeField] bool idling;
+    [SerializeField] int damage;
 
+    private Renderer myRenderer;
+    private Canvas myCanvas;
 
+    private void Awake()
+    {
+        myRenderer = GetComponent<Renderer>();
+        myCanvas = GetComponentInChildren<Canvas>();
+    }
 
-     private void Start()
+    private void Start()
     {
         Offset = new Vector2(transform.position.x - 10 , transform.position.x + 10); // initialisation du champ d'allez retour en fonction de la position initiale de l'IA
         rotationVector = transform.rotation.eulerAngles;
 
-        idling = false;
+        Disable();
+    }
+	void Update () 
+    {
+        
 
+        if(idling == false)
+        {
+            if(isNearPlayer(target,7) == true)
+            {
+                if(isFarFromPlayer(target,minimumDistanceToAttack) == true)
+                {
+                    moveToAttack(target);
+                }else
+                {
+                    attack(target);
+                }
+            }
+            else
+            { 
+                if (transform.position.x > Offset.y)
+                    goLeft();
+                else if(transform.position.x < Offset.x)
+                    goRight();
 
+                transform.position = transform.position + new Vector3(Vitesse * direction * Time.deltaTime/200, 0, 0); 
+            }
+        }else
+        {
+            //anim.SetTrigger("idle");
+        }
+        
     }
 	
+    public void Disable()   //Met l'ennemi en pause jusqu'à l'arriver du joueur
+    {
+        if (myRenderer == null) return;
+        idling = true;
+        myRenderer.enabled = false;
+        myCanvas.enabled = false;
+    }
 
+    public void Enable()   //Active l'ennemi
+    {
+        if (myRenderer == null) return;
+        myRenderer.enabled = true;
+        myCanvas.enabled = true;
+        idling = false;
+    }
+
+    private IEnumerator myWaiter(float x)
+    {
+        //Wait for x seconds
+        yield return new WaitForSeconds(x);
+    }
 
     //aller à gauche
     private void goLeft () 
@@ -76,20 +134,19 @@ public class IaController : MonoBehaviour
         return false;
     }
 
-
     private void attack(string tag)
     {
         anim.SetTrigger("attack");
         GameObject[] goWithTag = GameObject.FindGameObjectsWithTag(tag);
-
+        goWithTag[0].GetComponent<PlayerStatus>().GetDamage(damage);
     }
 
 
-    private void moveToAttack()
+    private void moveToAttack(string tag)
     {       
         anim.SetTrigger("run");
-        var wayPoint = GameObject.Find("Rhis");
-        var wayPointPos = new Vector3(wayPoint.transform.position.x, wayPoint.transform.position.y, wayPoint.transform.position.z);
+        var wayPoint = GameObject.FindGameObjectWithTag(tag).transform;
+        var wayPointPos = new Vector3(wayPoint.position.x, wayPoint.position.y, wayPoint.position.z);
         if(wayPoint.transform.position.x < transform.position.x)
         {        
             rotation = -180;
@@ -104,34 +161,9 @@ public class IaController : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, wayPointPos, 5 * Time.deltaTime/10); 
     }
 
-
-	void Update () 
+    public void SetTarget(string newTarget)
     {
-        if(idling == true)
-        {
-                 if(isNearPlayer("Player",20) == true)
-                {
-                    if(isFarFromPlayer("Player",minimumDistanceToAttack) == true)
-                    {
-                        moveToAttack();
-                    }else
-                    {
-                        attack("Player");
-                    }
-                }
-        else
-        { 
-            if (transform.position.x > Offset.y)
-                goLeft();
-            else if(transform.position.x < Offset.x)
-                goRight();
-
-            transform.position = transform.position + new Vector3(Vitesse * direction * Time.deltaTime/200, 0, 0); 
-        }
-        }else
-        {
-                    anim.SetTrigger("idle");
-        }
-        
+        target = newTarget;
     }
+
 }

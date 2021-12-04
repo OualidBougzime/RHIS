@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2e5b117a6acbaa448b97d94bf09a2fd, type: 3}
-  m_Name: TreeSpritesTile
+  m_Script: {fileID: 11500000, guid: 2252372bbf75f66428c34953bb97a944, type: 3}
+  m_Name: Rhis
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 92a0adfd3e8a96b47aba9b7c725beb2e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -34,7 +34,6 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  sprites:
-  - {fileID: 21300000, guid: 21cd5111a6c4246feb00c2cfa665341d, type: 3}
-  isSpriteLocked: 0
+  enemies:
+  - {fileID: 3480775014007056383, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
   chanceToSpawn: 100

@@ -77,8 +77,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30daa9150b0f24a41a495cc9ce7e1faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effect: {fileID: 970765343636512615, guid: 57eb49a1ea931954288fd6a243aa43f5, type: 3}
   poisoned: 0
   healthPointMax: 20
+  slower: 0
+  BasicDamage: 10
+  FireDamage: 5
+  IceDamage: 5
+  SuperDamage: 20
 --- !u!1001 &2023923851069029516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -86,14 +92,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 94893967950397280, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -62.778625
-      objectReference: {fileID: 0}
-    - target: {fileID: 94893967950397280, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -4.2800293
-      objectReference: {fileID: 0}
     - target: {fileID: 452167443641576352, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_Controller
       value: 
@@ -144,7 +142,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3287430917894077264, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_Name
-      value: Rihar
+      value: Rihar Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287430917894077264, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
+      propertyPath: m_TagString
+      value: Enemies
       objectReference: {fileID: 0}
     - target: {fileID: 3758913229232145311, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -158,6 +160,18 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 1896024101813245740}
+    - target: {fileID: 5088049256709226159, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
+      propertyPath: idling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512210049437078269, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8512210049437078269, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
 --- !u!1 &3569420482474051548 stripped

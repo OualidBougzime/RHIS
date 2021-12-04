@@ -11,8 +11,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.8318367
+  m_Center: {x: 0.16113281, y: -0.08054733, z: 0}
 --- !u!114 &136352848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,6 +27,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poisoned: 0
   healthPointMax: 20
+  slower: 0
+  BasicDamage: 10
+  FireDamage: 5
+  IceDamage: 5
+  SuperDamage: 20
 --- !u!1001 &8919712595737923323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34,17 +39,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3745584291278501693, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: m_Constraints
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 2191640507547301577, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5894490523661106554, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -62.778625
+    - target: {fileID: 2791457273548787943, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5894490523661106554, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -4.2800293
+    - target: {fileID: 2791457273548787943, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_RootOrder
@@ -52,11 +61,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.06
+      value: 43.7
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 50.72
+      value: 47.02
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311400, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -92,7 +101,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311404, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_Name
-      value: Falsma
+      value: Falsma Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002047464695311404, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: m_TagString
+      value: Enemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002047464695311405, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002047464695311405, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: idling
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7257016177419698565, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_AnchorMax.x

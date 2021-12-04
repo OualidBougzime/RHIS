@@ -35,5 +35,5 @@ MonoBehaviour:
   m_Flags: 1
   m_ColliderType: 1
   enemies:
-  - {fileID: 1250633769277312145, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
+  - {fileID: 2919072558546150103, guid: a5c068ea0e1104498894fe9299936baf, type: 3}
   chanceToSpawn: 50

@@ -7,7 +7,7 @@ using UnityEditor;
 
 public class RandomEnemies : Tile
 {
-    [SerializeField] Object[] enemies;
+    [SerializeField] GameObject[] enemies;
     [SerializeField] [Range(0, 100)] private int chanceToSpawn = 100;
 
     public int GetChanceToSpawn()
@@ -15,7 +15,7 @@ public class RandomEnemies : Tile
         return chanceToSpawn;
     }
 
-    public Object GetEnemy()
+    public GameObject GetEnemy()
     {
         return enemies[Random.Range(0, enemies.Length)];
     }

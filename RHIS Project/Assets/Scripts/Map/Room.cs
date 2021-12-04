@@ -35,12 +35,17 @@ public class Room : ScriptableObject
             x += position.x;
             y += position.y;
         }
-        return new Vector3Int(x / 4, y / 4);
+        return new Vector3Int(x / doors.Count, y / doors.Count);
     }
 
     private int SetNbrNeighbours(int nbrDoors)
     {
-        int random = UnityEngine.Random.Range(0, 100);
+        if (nbrDoors == 0)
+        {
+            throw new Exception("Faut mettre une porte à la salle");
+        }
+        return 1;
+        /*int random = UnityEngine.Random.Range(0, 100);
         switch (nbrDoors)
         {
             case 2:
@@ -90,7 +95,7 @@ public class Room : ScriptableObject
                 }
             default:
                 return 1;
-        }
+        }*/
     }
 
     internal bool HasOpenDoor()
