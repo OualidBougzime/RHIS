@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 	public Animator anim;
 	[SerializeField] int dashPossibility = 1000;
 
+	//Adding DontDestroyOnLoad
+	
 
 	private Transform poisonCircle;
     private Rigidbody myRigidbody;
