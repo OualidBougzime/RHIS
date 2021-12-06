@@ -40,6 +40,22 @@ public class PlayerController : MonoBehaviour
 		if(dashPossibility<1000)
 			dashPossibility+=1;
         speed = new Vector3(0, 0);
+        if(Input.GetButtonDown("Fire1")){
+    		//GetComponent<AudioSource>().PlayOneShot(SoundTir);
+    		GameObject Bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
+    		Bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.right) * Force;
+    		Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 1);
+
+        	foreach (Collider collider in hitColliders){
+            	if (!collider.gameObject.CompareTag("Player") && !collider.gameObject.CompareTag("Backdrops"))
+            	{
+                	print(collider);
+                    collider.GetComponentInParent<EnemyStatus>().GetDamage(5);
+            	}
+       	 	}
+    		Destroy(Bullet, 2f);
+    	}
+
     	if(Input.anyKey){
 			if(Input.GetKey(KeyCode.Q)){
     		goLeft();
@@ -184,11 +200,14 @@ public class PlayerController : MonoBehaviour
 			StartCoroutine(PlayerWeapon.ShootWeapon());
 
 			//GetComponent<AudioSource>().PlayOneShot(SoundTir);
-			GameObject bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
+			/*GameObject bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
 			bullet.transform.position = bullet.transform.position + new Vector3(1,1, 1);
 			//Bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.right) * Force;
 			//transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * Force, Space.World);
-			Destroy(bullet, 2f);
+			Destroy(bullet, 2f);*/
+			/*GameObject Bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
+    		Bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.right) * Force;
+    		Destroy(Bullet, 2f);*/
 		}
 		
 	}
