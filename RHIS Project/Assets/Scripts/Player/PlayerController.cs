@@ -20,15 +20,70 @@ public class PlayerController : MonoBehaviour
     private Rigidbody myRigidbody;
     private Vector3 speed;
 
-	//Adding DontDestroyOnLoad
-	
+	private static PlayerController instance;
 
-    // Start is called before the first frame update
+
+    private void Awake()
+    {
+		ManageSingleton();
+    }
     void Start()
     {
     	rotationVector = transform.rotation.eulerAngles;
         myRigidbody = GetComponent<Rigidbody>();
 		poisonCircle = transform.GetChild(1).GetComponentInChildren<Transform>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+		if(dashPossibility<1000)
+			dashPossibility+=1;
+        speed = new Vector3(0, 0);
+    	if(Input.anyKey){
+			if(Input.GetKey(KeyCode.Q)){
+    		goLeft();
+    		}
+			if(Input.GetKey(KeyCode.D)){
+				goRight();
+			}
+
+			if(Input.GetKey(KeyCode.Z)){
+				goUp();
+			}
+			if(Input.GetKey(KeyCode.S)){
+				goDown();
+			}
+			if(Input.GetKey(KeyCode.Space)){
+				dash();
+			}
+			if(Input.GetButtonDown("Fire1")){
+				fire();
+			}
+		}else
+		{
+			idle();
+		}
+        myRigidbody.velocity = cartesianToIsometric(speed/10);
+    }
+
+	private void ManageSingleton()
+    {
+		if (instance != null)
+        {
+			gameObject.SetActive(false);
+			Destroy(gameObject);
+        }
+		else
+        {
+			instance = this;
+			DontDestroyOnLoad(gameObject);
+        }
+    }
+
+	public GameObject GetGameObject()
+    {
+		return instance.gameObject;
     }
 
 	Vector3 cartesianToIsometric(Vector3 cartesian){
@@ -147,37 +202,4 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-
-    // Update is called once per frame
-    void Update()
-    {
-		if(dashPossibility<1000)
-			dashPossibility+=1;
-        speed = new Vector3(0, 0);
-    	if(Input.anyKey){
-			if(Input.GetKey(KeyCode.Q)){
-    		goLeft();
-    		}
-			if(Input.GetKey(KeyCode.D)){
-				goRight();
-			}
-
-			if(Input.GetKey(KeyCode.Z)){
-				goUp();
-			}
-			if(Input.GetKey(KeyCode.S)){
-				goDown();
-			}
-			if(Input.GetKey(KeyCode.Space)){
-				dash();
-			}
-			if(Input.GetButtonDown("Fire1")){
-				fire();
-			}
-		}else
-		{
-			idle();
-		}
-        myRigidbody.velocity = cartesianToIsometric(speed/10);
-    }
 }

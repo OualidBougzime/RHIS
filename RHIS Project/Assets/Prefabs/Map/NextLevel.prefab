@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 872561843684850642}
   - component: {fileID: 3338699710676789451}
   m_Layer: 0
-  m_Name: NextLeve
+  m_Name: NextLevel
   m_TagString: Backdrops
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

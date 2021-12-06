@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     public GameObject Player;
     private Vector3 offset = new Vector3(0, 0, -7);
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        Player = Player.GetComponent<PlayerController>().GetGameObject();
+    }
 
     // Update is called once per frame
     void Update()

@@ -56,6 +56,7 @@ public class InstanciateRoom : MonoBehaviour
 
     void Start()
     {
+        rhis = rhis.GetComponent<PlayerController>().GetGameObject();
         pathfinder = ScriptableObject.CreateInstance<PathFinder>();
         nbrRoom = treasureRoom + bossRoom + exitRoom + battleRoom + startRoom;
         Vector3Int sizeMax = GetSizeMax(rooms);

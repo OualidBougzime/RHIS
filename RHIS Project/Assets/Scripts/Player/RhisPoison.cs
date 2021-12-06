@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RhisPoison : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
     [SerializeField] private float range = 0.3f;
 
     private Transform poisonCircle;
