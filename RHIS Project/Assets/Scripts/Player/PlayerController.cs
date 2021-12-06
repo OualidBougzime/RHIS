@@ -133,6 +133,24 @@ public class PlayerController : MonoBehaviour
 			//Bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.right) * Force;
 			//transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * Force, Space.World);
 			Destroy(bullet, 2f);
+
+			// Check if bullet has touched a enemy
+			if (PlayerWeapon.Effect == WeaponEffect.POISON)
+			{
+
+			} else if (PlayerWeapon.Effect == WeaponEffect.SUPER_POISON)
+			{
+				
+			} else if (PlayerWeapon.Effect == WeaponEffect.FIRE)
+			{
+				
+			} else if (PlayerWeapon.Effect == WeaponEffect.ICE)
+			{
+				
+			} else if (PlayerWeapon.Effect == WeaponEffect.RAGE)
+			{
+				
+			}
 		}
 		
 	}
