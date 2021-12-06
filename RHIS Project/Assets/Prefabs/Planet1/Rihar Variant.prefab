@@ -11,8 +11,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.7435455
+  m_Center: {x: -0.000019073486, y: 0.14907837, z: 0}
 --- !u!212 &96532794241266407
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -77,7 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30daa9150b0f24a41a495cc9ce7e1faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 970765343636512615, guid: 57eb49a1ea931954288fd6a243aa43f5, type: 3}
   poisoned: 0
   healthPointMax: 20
   slower: 0
@@ -96,6 +95,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 774984d50656443c8a329d9a54575965, type: 2}
+    - target: {fileID: 626553350483061496, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
+      propertyPath: m_Constraints
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 1373209887881615805, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -291,7 +291,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &759664595928276701
+--- !u!1001 &1759295296
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -388,28 +388,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
       propertyPath: rooms.Array.size
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
       propertyPath: rooms.Array.data[0]
       value: 
-      objectReference: {fileID: 5672730836890018052, guid: 8249010a8b9f8d8428637443cf1eeba5, type: 3}
+      objectReference: {fileID: 5672730836890018052, guid: 2138386b3e6847b48a75bdb7198ac170, type: 3}
     - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
       propertyPath: rooms.Array.data[1]
       value: 
-      objectReference: {fileID: 5672730836890018052, guid: 57d1ea1bdee644e45b38e705af393db0, type: 3}
+      objectReference: {fileID: 5672730836890018052, guid: b5394492ed7cf8e4288981bca79c3ee8, type: 3}
     - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
       propertyPath: rooms.Array.data[2]
       value: 
-      objectReference: {fileID: 5672730836890018052, guid: bde47d6bcea19354ea033f9b2cb330f9, type: 3}
+      objectReference: {fileID: 5672730836890018052, guid: f0a6f104025434643863b9c14c5c4bbd, type: 3}
     - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
       propertyPath: rooms.Array.data[3]
       value: 
-      objectReference: {fileID: 5672730836890018052, guid: 2138386b3e6847b48a75bdb7198ac170, type: 3}
+      objectReference: {fileID: 5672730836890018052, guid: 57d1ea1bdee644e45b38e705af393db0, type: 3}
     - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
       propertyPath: rooms.Array.data[4]
       value: 
-      objectReference: {fileID: 5672730836890018052, guid: f0a6f104025434643863b9c14c5c4bbd, type: 3}
+      objectReference: {fileID: 5672730836890018052, guid: 990c58837ca58c44ba6ab8cf8ee6daa8, type: 3}
+    - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
+      propertyPath: rooms.Array.data[5]
+      value: 
+      objectReference: {fileID: 5672730836890018052, guid: 19c7d106189f3c64f9624edb84ce65ff, type: 3}
+    - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
+      propertyPath: rooms.Array.data[6]
+      value: 
+      objectReference: {fileID: 5672730836890018052, guid: e2c0326fefe580d41950cddedb59e7a4, type: 3}
+    - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
+      propertyPath: rooms.Array.data[7]
+      value: 
+      objectReference: {fileID: 5672730836890018052, guid: 37a265d35e63b7c4ca3cf3724306551e, type: 3}
+    - target: {fileID: 759664596227522785, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
+      propertyPath: rooms.Array.data[8]
+      value: 
+      objectReference: {fileID: 5672730836890018052, guid: 95b44b908ebabb34298b508e4c004f09, type: 3}
     - target: {fileID: 759664596227522790, guid: ca020b07239ae7145bcd69e53914b822, type: 3}
       propertyPath: m_Name
       value: MapManager

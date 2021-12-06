@@ -181,4 +181,9 @@ public class Room : ScriptableObject
     {
         return neighbours;
     }
+
+    internal int GetNbrDoors()
+    {
+        return doors.Count;
+    }
 }

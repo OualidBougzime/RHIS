@@ -314,6 +314,10 @@ public class PathFinder : ScriptableObject
             {
                 continue;
             }
+            if (room.GetNbrDoors() <= 2 && r.GetNbrDoors() <= 2)
+            {
+                continue;
+            }
             float distance = room.GetDistance(r);
             if (maxDistance > room.GetDistance(r))
             {

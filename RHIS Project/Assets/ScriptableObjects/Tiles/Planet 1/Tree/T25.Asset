@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2e5b117a6acbaa448b97d94bf09a2fd, type: 3}
-  m_Name: TreeRandomSpritesTile
+  m_Name: T25
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 88998d4e7acaa4f8f9d3dbbf7dbad30c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -43,4 +43,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3bfe7999e602d47a9bfe44f7a0d48349, type: 3}
   - {fileID: 21300000, guid: a1063dcf6a5994cc5ae104ceffa216ad, type: 3}
   isSpriteLocked: 1
-  chanceToSpawn: 100
+  chanceToSpawn: 25

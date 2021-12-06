@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2e5b117a6acbaa448b97d94bf09a2fd, type: 3}
-  m_Name: NextLevel
+  m_Name: W25
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 9578973cca0224944a72673f1fefea7a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68fcf82feae66574ca5604c4ea8f3eb2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -31,9 +31,9 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 1
-  m_InstancedGameObject: {fileID: 1044676098112002365, guid: af5ded0df86bbbd478401fc3d15777f6, type: 3}
+  m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
   sprites: []
   isSpriteLocked: 0
-  chanceToSpawn: 100
+  chanceToSpawn: 25

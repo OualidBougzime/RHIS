@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2e5b117a6acbaa448b97d94bf09a2fd, type: 3}
-  m_Name: NextLevel
+  m_Name: R50
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 9578973cca0224944a72673f1fefea7a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 961b73808d53148be9a9fc18fa164568, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -31,9 +31,14 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 1
-  m_InstancedGameObject: {fileID: 1044676098112002365, guid: af5ded0df86bbbd478401fc3d15777f6, type: 3}
+  m_InstancedGameObject: {fileID: 8923350831986590427, guid: c5bf33ea3c3f8ce419c5899c11196793, type: 3}
   m_Flags: 1
   m_ColliderType: 1
-  sprites: []
-  isSpriteLocked: 0
-  chanceToSpawn: 100
+  sprites:
+  - {fileID: 21300000, guid: 0d0fd04963077434b953b5cc0d700b33, type: 3}
+  - {fileID: 21300000, guid: 3d1de8056b9bf48f89550bc11fe668b4, type: 3}
+  - {fileID: 21300000, guid: 51777786ca1504fecb4ddf2a8c847ee3, type: 3}
+  - {fileID: 21300000, guid: ad3de818bdae9497bb04d83fcf06b219, type: 3}
+  - {fileID: 21300000, guid: 7a51b561cfe614fddbf20648fa363e4e, type: 3}
+  isSpriteLocked: 1
+  chanceToSpawn: 50

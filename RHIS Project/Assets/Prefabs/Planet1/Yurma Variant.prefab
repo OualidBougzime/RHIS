@@ -11,8 +11,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.4191628
+  m_Center: {x: 0, y: -0.24988174, z: 0}
 --- !u!212 &1260880323392235838
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -77,7 +77,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30daa9150b0f24a41a495cc9ce7e1faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 2071816146089116175, guid: f07b1f89383752145a45a637a0ef2fa8, type: 3}
   poisoned: 0
   healthPointMax: 20
   slower: 0
@@ -99,6 +98,10 @@ PrefabInstance:
     - target: {fileID: -3627079700713782633, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: idling
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 795348499479405455, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
+      propertyPath: m_Constraints
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 2224730868255605748, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_AnchorMax.x

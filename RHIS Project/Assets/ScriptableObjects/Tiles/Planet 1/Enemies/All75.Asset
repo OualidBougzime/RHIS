@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2252372bbf75f66428c34953bb97a944, type: 3}
-  m_Name: RandomEnemies
+  m_Name: All75
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 30040adec271da84a9a94392212f02d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -36,4 +36,6 @@ MonoBehaviour:
   m_ColliderType: 1
   enemies:
   - {fileID: 2919072558546150103, guid: a5c068ea0e1104498894fe9299936baf, type: 3}
-  chanceToSpawn: 50
+  - {fileID: 3569420482474051548, guid: 9d66ae011ae874187bcd950fd36ef91d, type: 3}
+  - {fileID: 7732438922532646343, guid: e5bb11042a5d4418382c156303fae328, type: 3}
+  chanceToSpawn: 75
