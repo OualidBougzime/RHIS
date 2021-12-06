@@ -3268,7 +3268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7755754655031964048, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
       propertyPath: vitesse
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9066995077249101613, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
       propertyPath: m_Sprite

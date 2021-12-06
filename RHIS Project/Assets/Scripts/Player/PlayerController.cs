@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 	public int Force;
     [SerializeField] private int vitesse = 1;
     private static int direction;
-    private static char key;
+    private static char key=' ';
     private int rotation;
     Vector3 rotationVector;
 	public Animator anim;
@@ -40,21 +40,6 @@ public class PlayerController : MonoBehaviour
 		if(dashPossibility<1000)
 			dashPossibility+=1;
         speed = new Vector3(0, 0);
-        if(Input.GetButtonDown("Fire1")){
-    		//GetComponent<AudioSource>().PlayOneShot(SoundTir);
-    		GameObject Bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
-    		Bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.right) * Force;
-    		Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 1);
-
-        	foreach (Collider collider in hitColliders){
-            	if (!collider.gameObject.CompareTag("Player") && !collider.gameObject.CompareTag("Backdrops"))
-            	{
-                	print(collider);
-                    collider.GetComponentInParent<EnemyStatus>().GetDamage(5);
-            	}
-       	 	}
-    		Destroy(Bullet, 2f);
-    	}
 
     	if(Input.anyKey){
 			if(Input.GetKey(KeyCode.Q)){
@@ -195,20 +180,39 @@ public class PlayerController : MonoBehaviour
 	{
 		anim.SetTrigger("fire");
 
-		if (PlayerWeapon != null && PlayerWeapon.AmmoInMagazine != 0)
-		{
-			StartCoroutine(PlayerWeapon.ShootWeapon());
+		//if (PlayerWeapon != null && PlayerWeapon.AmmoInMagazine != 0)
+		//{
+			//StartCoroutine(PlayerWeapon.ShootWeapon());
 
-			//GetComponent<AudioSource>().PlayOneShot(SoundTir);
-			/*GameObject bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
-			bullet.transform.position = bullet.transform.position + new Vector3(1,1, 1);
-			//Bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.right) * Force;
-			//transform.Rotate(new Vector3(0, 1, 0) * Time.deltaTime * Force, Space.World);
-			Destroy(bullet, 2f);*/
-			/*GameObject Bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
-    		Bullet.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.right) * Force;
-    		Destroy(Bullet, 2f);*/
-		}
+			GameObject Bullet = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
+			if(key==' '){
+				Bullet.GetComponent<Rigidbody>().velocity = cartesianToIsometric(transform.TransformDirection(Vector3.right)) * Force;
+			}
+			if(key == 'Q'){
+				Bullet.GetComponent<Rigidbody>().velocity = cartesianToIsometric(transform.TransformDirection(Vector3.right)) * Force;
+			}
+
+			if(key == 'D'){
+				Bullet.GetComponent<Rigidbody>().velocity = cartesianToIsometric(transform.TransformDirection(Vector3.right)) * Force;
+			}
+
+			if(key == 'Z'){
+				Bullet.GetComponent<Rigidbody>().velocity = cartesianToIsometric(transform.TransformDirection(Vector3.up)) * Force;
+			}
+			if(key == 'S'){
+				Bullet.GetComponent<Rigidbody>().velocity = cartesianToIsometric(transform.TransformDirection(Vector3.down)) * Force;
+			}
+    		Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 1);
+
+        	foreach (Collider collider in hitColliders){
+            	if (!collider.gameObject.CompareTag("Player") && !collider.gameObject.CompareTag("Backdrops"))
+            	{
+                	print(collider);
+                    collider.GetComponentInParent<EnemyStatus>().GetDamage(5);
+            	}
+       	 	}
+    		Destroy(Bullet, 2f);
+		//}
 		
 	}
 
