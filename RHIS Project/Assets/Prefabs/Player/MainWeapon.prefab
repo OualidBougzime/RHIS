@@ -53,8 +53,8 @@ MonoBehaviour:
   MagazineSize: 7
   MaxAmmo: 32
   Effect: 0
-  TotalAmmo: 5
-  AmmoInMagazine: 5
+  TotalAmmo: 32
+  AmmoInMagazine: 7
   Force: 10
 --- !u!50 &6985164286193438639
 Rigidbody2D:
