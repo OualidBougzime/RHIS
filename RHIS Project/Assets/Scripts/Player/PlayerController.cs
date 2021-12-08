@@ -34,40 +34,6 @@ public class PlayerController : MonoBehaviour
 		poisonCircle = transform.GetChild(1).GetComponentInChildren<Transform>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-		if(dashPossibility<1000)
-			dashPossibility+=1;
-        speed = new Vector3(0, 0);
-
-    	if(Input.anyKey){
-			if(Input.GetKey(KeyCode.Q)){
-    		goLeft();
-    		}
-			if(Input.GetKey(KeyCode.D)){
-				goRight();
-			}
-
-			if(Input.GetKey(KeyCode.Z)){
-				goUp();
-			}
-			if(Input.GetKey(KeyCode.S)){
-				goDown();
-			}
-			if(Input.GetKey(KeyCode.Space)){
-				dash();
-			}
-			if(Input.GetButtonDown("Fire1")){
-				fire();
-			}
-		}else
-		{
-			idle();
-		}
-        myRigidbody.velocity = cartesianToIsometric(speed/10);
-    }
-
 	private void ManageSingleton()
     {
 		if (instance != null)
