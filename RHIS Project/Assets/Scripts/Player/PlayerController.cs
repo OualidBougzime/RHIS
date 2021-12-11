@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
     	key = 'Z';
 		anim.SetTrigger("run");
         direction = 1;
-		rotation = -180;
+		//rotation = -180;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
 		poisonCircle.rotation = Quaternion.identity;
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
     	key = 'S';
 		anim.SetTrigger("run");
         direction = -1;
-		rotation = 0;
+		//rotation = 0;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
 		poisonCircle.rotation = Quaternion.identity;
