@@ -8,7 +8,6 @@ public class LevelSwitcher : MonoBehaviour
 
     private void Awake()
     {
-
         lvl = gameObject.AddComponent<LvlManager>();
     }
     private void OnTriggerEnter(Collider other)

@@ -57,6 +57,7 @@ public class EnemyStatus : MonoBehaviour
     public void Death()
     {
         counter.KillEnemy();
+        gameObject.SetActive(false);
         Destroy(gameObject);
     }
 

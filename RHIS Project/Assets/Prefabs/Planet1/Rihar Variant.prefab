@@ -96,6 +96,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 774984d50656443c8a329d9a54575965, type: 2}
     - target: {fileID: 626553350483061496, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 626553350483061496, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_Constraints
       value: 120
       objectReference: {fileID: 0}
@@ -164,8 +168,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1896024101813245740}
     - target: {fileID: 5088049256709226159, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088049256709226159, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: idling
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088049256709226159, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
+      propertyPath: attackCooldown
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088049256709226159, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
+      propertyPath: attackPossibility
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8512210049437078269, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_AnchorMax.x

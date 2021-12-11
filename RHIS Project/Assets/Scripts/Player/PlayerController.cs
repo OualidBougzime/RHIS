@@ -14,8 +14,9 @@ public class PlayerController : MonoBehaviour
     Vector3 rotationVector;
 	public Animator anim;
 	[SerializeField] int dashPossibility = 1000;
+	[SerializeField] int dashCooldown = 1000;
 
-
+	[SerializeField] private int dashSpeed = 100;
 	private Transform poisonCircle;
     private Rigidbody myRigidbody;
     private Vector3 speed;
@@ -127,9 +128,10 @@ public class PlayerController : MonoBehaviour
     }
 
     void dash(){
-		if(dashPossibility == 1000){
+		if(dashPossibility >= dashCooldown)
+		{
 			anim.SetTrigger("dash");
-			var vitesseDash = 200;
+			/*var vitesseDash = 200;
 			if(key == 'Q'){
 				direction = -5;
 				transform.position = transform.position + cartesianToIsometric(new Vector3(vitesseDash * direction * Time.deltaTime/20, 0, 0));
@@ -148,7 +150,8 @@ public class PlayerController : MonoBehaviour
 			if(key == 'S'){
 				direction = -5;
 				transform.position = transform.position + cartesianToIsometric(new Vector3(0, vitesseDash * direction * Time.deltaTime/20, 0));
-			}
+			}*/
+			speed *= dashSpeed;
 			dashPossibility = 0;
 		}
     	
@@ -235,7 +238,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(dashPossibility<1000)
+		if(dashPossibility<dashCooldown)
 			dashPossibility+=1;
         speed = new Vector3(0, 0);
     	if(Input.anyKey){

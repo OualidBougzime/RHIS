@@ -186,6 +186,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7755754655031964048, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+      propertyPath: dashSpeed
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
 --- !u!1 &1371096574 stripped
