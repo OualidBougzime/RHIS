@@ -13,12 +13,6 @@ public class PlayerStatus : MonoBehaviour
         healthPoint = healthPointMax;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void GetDamage(int damage)
     {
         if (this.healthPoint > damage)

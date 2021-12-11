@@ -54,10 +54,27 @@ public class PlayerController : MonoBehaviour
     }
 
 	Vector3 cartesianToIsometric(Vector3 cartesian){
-		var isometric = new Vector3();
+		if (cartesian.x > 0 && cartesian.y > 0)
+        {
+			return new Vector3(cartesian.x, cartesian.x / 2);
+        }
+		else if (cartesian.x > 0 && cartesian.y < 0)
+        {
+			return new Vector3(-cartesian.y, cartesian.y / 2);
+		}
+		else if (cartesian.x < 0 && cartesian.y > 0)
+		{ 
+			return new Vector3 (-cartesian.y, cartesian.y/2);
+		}
+		else if (cartesian.x < 0 && cartesian.y < 0)
+		{
+			return new Vector3(cartesian.x, cartesian.x / 2);
+		}
+		/*var isometric = new Vector3();
 		isometric.x = cartesian.x - cartesian.y;
 		isometric.y = (cartesian.x + cartesian.y) / 2;
-		return isometric;
+		return isometric;*/
+		return cartesian;
 
 	}
 
