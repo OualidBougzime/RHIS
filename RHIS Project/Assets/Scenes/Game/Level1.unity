@@ -190,6 +190,10 @@ PrefabInstance:
       propertyPath: dashSpeed
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 7755754655031964048, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+      propertyPath: PlayerWeapon
+      value: 
+      objectReference: {fileID: -4672096289783657316, guid: 7bf97e36b99ea4c4491a0553c0db859d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
 --- !u!1 &1371096574 stripped

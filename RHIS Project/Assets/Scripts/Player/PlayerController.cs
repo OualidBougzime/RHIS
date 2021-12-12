@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	public Weapon PlayerWeapon;
+	[SerializeField] private GameObject myWeapon;
+	private Weapon playerWeapon;
 	public GameObject Projectile;
 	public int Force;
     [SerializeField] private int vitesse = 1;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private int dashSpeed = 100;
 	private Transform poisonCircle;
     private Rigidbody myRigidbody;
+	private Transform myTransform;
     private Vector3 speed;
 
 	private static PlayerController instance;
@@ -27,12 +29,14 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
 		ManageSingleton();
+        myRigidbody = GetComponent<Rigidbody>();
+		myTransform = GetComponent<Transform>();
+		poisonCircle = transform.GetChild(1).GetComponentInChildren<Transform>();
+		playerWeapon = myWeapon.GetComponent<Weapon>();
     }
     void Start()
     {
     	rotationVector = transform.rotation.eulerAngles;
-        myRigidbody = GetComponent<Rigidbody>();
-		poisonCircle = transform.GetChild(1).GetComponentInChildren<Transform>();
     }
 
 	private void ManageSingleton()
@@ -162,7 +166,7 @@ public class PlayerController : MonoBehaviour
 		anim.SetTrigger("idle");	
 	}
 
-	void fire()
+	/*void fire()
 	{
 		if (PlayerWeapon != null && PlayerWeapon.AmmoInMagazine != 0)
 		{
@@ -224,13 +228,29 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 		
+	}*/
+
+	public void StartFire()
+    {
+		if (playerWeapon != null)
+        {
+			playerWeapon.StartFire();
+        }
+    }
+
+	public void StopFire()
+    {
+		if (playerWeapon != null)
+		{
+			StartCoroutine(playerWeapon.StopFire());
+		}
 	}
 
 	void reload()
 	{
-		if (PlayerWeapon != null)
+		if (playerWeapon != null)
 		{
-			PlayerWeapon.ReloadWeapon();
+			playerWeapon.ReloadWeapon();
 		}
 	}
 
@@ -241,7 +261,13 @@ public class PlayerController : MonoBehaviour
 		if(dashPossibility<dashCooldown)
 			dashPossibility+=1;
         speed = new Vector3(0, 0);
-    	if(Input.anyKey){
+
+		if (Input.GetButtonUp("Fire1"))
+		{
+			StopFire();
+		}
+
+		if (Input.anyKey){
 			if(Input.GetKey(KeyCode.Q)){
     		goLeft();
     		}
@@ -262,7 +288,7 @@ public class PlayerController : MonoBehaviour
 				reload();
 			}
 			if(Input.GetButtonDown("Fire1")){
-				fire();
+				StartFire();
 			}
 		}else
 		{
