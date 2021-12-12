@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	[SerializeField] private GameObject myWeapon;
+	[SerializeField] public GameObject myWeapon;
 	private Weapon playerWeapon;
 	public GameObject Projectile;
 	public int Force;
