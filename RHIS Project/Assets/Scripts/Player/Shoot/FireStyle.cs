@@ -8,19 +8,18 @@ public class FireStyle : MonoBehaviour
 
     [SerializeField] private int nbrBullets;
     [SerializeField] [Range(0, 100)] private int accuracy;
-    [SerializeField] [Range(0, 100)] private int range;
+    [SerializeField] [Range(0, 100)] private int damage;
+    [SerializeField] [Range(1, 100)] private int range;
     [SerializeField] [Range(1, 100)] private int shotSpeed;
 
 
-    public List<GameObject> Fire(GameObject bullet,Vector3 position, Vector3 direction)
+    public void Fire(GameObject bullet,Vector3 position, Vector3 direction, Weapon weapon)
     {
-        List<GameObject> bullets = new();
-
         for (int i = 0; i < nbrBullets; ++i)
         {
-            Vector3 accuracyDirection = new (direction.x + Random.Range(-50+accuracy/2,50-accuracy/2)/100f, direction.y + Random.Range(-50 + accuracy / 2, 50 - accuracy / 2)/100f);
+            //Vector3 accuracyDirection = new (direction.x + Random.Range(-50+accuracy/2,50-accuracy/2)/100f, direction.y + Random.Range(-50 + accuracy / 2, 50 - accuracy / 2)/100f);
+            Vector3 accuracyDirection = new (direction.x + Random.Range(Mathf.Clamp(-50+(accuracy + weapon.GetAccuracy())/2,-50,0), Mathf.Clamp(50-(accuracy + weapon.GetAccuracy())/2,0,50))/100f, direction.y + Random.Range(Mathf.Clamp(-50 + (accuracy + weapon.GetAccuracy()) / 2, -50, 0), Mathf.Clamp(50 - (accuracy + weapon.GetAccuracy()) / 2, 0, 50)) / 100f);
             accuracyDirection = accuracyDirection.normalized;
-            print(Vector3.Angle(transform.forward, accuracyDirection));
             Quaternion q = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan(accuracyDirection.y / accuracyDirection.x));
             if (accuracyDirection.x < 0)
             {
@@ -28,15 +27,21 @@ public class FireStyle : MonoBehaviour
             }
             GameObject instance = Instantiate(bullet, position, q);
 
-            Rigidbody rb = instance.GetComponent<Rigidbody>();
-            if (rb != null)
+            Rigidbody rigidbodyInstance = instance.GetComponent<Rigidbody>();
+            if (rigidbodyInstance != null)
             {
-                rb.velocity = accuracyDirection * shotSpeed/10;
+                rigidbodyInstance.velocity = accuracyDirection * (shotSpeed + weapon.GetShotSpeed()) / 10;
             }
 
-            bullets.Add(instance);
-        }
+            Bullet bulletInstance = instance.GetComponent<Bullet>();
+            if (bulletInstance != null)
+            {
+                bulletInstance.SetDamage(weapon.GetDamage() + damage);
+            }
 
-        return bullets;
+            Destroy(instance, (range + weapon.GetRange()) / 10f);
+
+
+        }
     }
 }

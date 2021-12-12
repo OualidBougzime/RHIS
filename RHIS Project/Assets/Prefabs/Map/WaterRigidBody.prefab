@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7796863905547222956}
   m_Layer: 0
   m_Name: WaterRigidBody
-  m_TagString: Backdrops
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

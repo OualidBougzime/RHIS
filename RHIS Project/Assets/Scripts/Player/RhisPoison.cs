@@ -26,7 +26,7 @@ public class RhisPoison : MonoBehaviour
 
         foreach (Collider collider in hitColliders)
         {
-            if (!collider.gameObject.CompareTag("Player") && !collider.gameObject.CompareTag("Backdrops"))
+            if (!collider.CompareTag("Player") && !collider.CompareTag("Backdrops") && !collider.CompareTag("Water"))
             {
                 //print(collider);
                 bool isPoisoned = collider.GetComponent<EnemyStatus>().GetPoisoned();

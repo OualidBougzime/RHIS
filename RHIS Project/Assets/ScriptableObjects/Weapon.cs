@@ -15,13 +15,14 @@ public enum WeaponEffect
 public class Weapon : MonoBehaviour
 {
     [SerializeField] public string Name;
-    [SerializeField] public float WeaponDamage;
     [SerializeField] public int WeaponBonus;
 
     [SerializeField] [Range(1, 100)] private int firingRate;
-    [SerializeField] [Range(0, 100)]  private int accuracyBonus;
-    [SerializeField] [Range(0, 100)]  private int rangeBonus;
-    [SerializeField] [Range(0, 100)]  private int shotSpeedBonus;
+    [SerializeField] [Range(0, 100)] private int reloadTime;
+    [SerializeField] [Range(0, 100)] private int damageBonus;
+    [SerializeField] [Range(0, 100)] private int accuracyBonus;
+    [SerializeField] [Range(0, 100)] private int rangeBonus;
+    [SerializeField] [Range(0, 100)] private int shotSpeedBonus;
 
     [SerializeField] public int MagazineSize;
     [SerializeField] public int MaxAmmo;
@@ -40,14 +41,28 @@ public class Weapon : MonoBehaviour
     private Transform myTransform;
     private Coroutine firingCoroutine;
     private bool fire;
+    private bool reload;
 
     private void Awake()
     {
         myTransform = GetComponent<Transform>();
         fire = true;
+        reload = false;
     }
-    public void ReloadWeapon()
+
+
+    public void Reload()
     {
+        if (!reload)
+        {
+            StartCoroutine(ReloadCoroutine());
+        }
+    }
+    IEnumerator ReloadCoroutine()
+    {
+        
+        reload = true;
+        yield return new WaitForSeconds(reloadTime/10f);
         if (TotalAmmo + AmmoInMagazine >= MagazineSize)
         {
             TotalAmmo -= MagazineSize - AmmoInMagazine;
@@ -59,6 +74,7 @@ public class Weapon : MonoBehaviour
             AmmoInMagazine += TotalAmmo;
             TotalAmmo = 0;
         }
+        reload = false;
     }
 
     public void AddAmmo(int quantity)
@@ -96,6 +112,7 @@ public class Weapon : MonoBehaviour
     {
         while (true)
         {
+            yield return new WaitUntil(() => reload == false);
             Fire();
             float time = 10 / (float)firingRate;
             yield return new WaitForSeconds(time * 0.9f);
@@ -106,11 +123,52 @@ public class Weapon : MonoBehaviour
 
     public void Fire()
     {
+        if (AmmoInMagazine <= 0)
+        {
+            Reload();
+            return;
+        }
         Vector3 screenSize = new(Screen.width, Screen.height);
         Vector3 direction = (Input.mousePosition - screenSize / 2).normalized;
-        List<GameObject> bullets = fireStyle.Fire(bullet, myTransform.position, direction);
-
+        fireStyle.Fire(bullet, myTransform.position, direction, this);
 
         AmmoInMagazine--;
+    }
+
+    public int GetRange()
+    {
+        return rangeBonus;
+    }
+
+    public void SetRange(int range)
+    {
+        rangeBonus = range;
+    }
+    public int GetShotSpeed()
+    {
+        return shotSpeedBonus;
+    }
+
+    public void SetShotSpeed(int shotSpeed)
+    {
+        shotSpeedBonus = shotSpeed;
+    }
+    public int GetAccuracy()
+    {
+        return accuracyBonus;
+    }
+
+    public void SetAccuracy(int accuracy)
+    {
+        accuracyBonus = accuracy;
+    }
+    public int GetDamage()
+    {
+        return damageBonus;
+    }
+
+    public void SetDamage(int damage)
+    {
+        damageBonus = damage;
     }
 }

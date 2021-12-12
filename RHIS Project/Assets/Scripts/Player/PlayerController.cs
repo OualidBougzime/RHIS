@@ -250,7 +250,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (playerWeapon != null)
 		{
-			playerWeapon.ReloadWeapon();
+			playerWeapon.Reload();
 		}
 	}
 

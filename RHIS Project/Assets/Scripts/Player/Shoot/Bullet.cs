@@ -4,7 +4,26 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    int damage;
+    private int damage;
+
+    public void Hit()
+    {
+        Destroy(gameObject);
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemies"))
+        {
+            other.GetComponent<EnemyStatus>().GetDamage(damage);
+            Hit();
+        }
+        else if (!other.CompareTag("Water") && !other.CompareTag("Player"))
+        {
+            Hit();
+        }
+    }
 
     public void SetDamage(int damage)
     {
@@ -13,23 +32,5 @@ public class Bullet : MonoBehaviour
     public int GetDamage()
     {
         return damage;
-    }
-
-    public void Hit()
-    {
-        Destroy(gameObject);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject == null)
-        {
-            Hit();
-        }
-        else if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<PlayerStatus>().GetDamage(damage);
-            Hit();
-        }
     }
 }

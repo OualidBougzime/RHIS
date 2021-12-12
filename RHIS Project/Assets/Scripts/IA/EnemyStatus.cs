@@ -7,13 +7,13 @@ public class EnemyStatus : MonoBehaviour
     private GameObject Effect;
     [SerializeField] bool poisoned = false;
     [SerializeField] int healthPointMax = 20;
+    [SerializeField] int healthPoint;
     [SerializeField] int slower;
     [SerializeField] int BasicDamage = 10;
     [SerializeField] int FireDamage = 5;
     [SerializeField] int IceDamage = 5;
     [SerializeField] int SuperDamage = 20;
 
-    int healthPoint;
 
     private EnemiesCounter counter;
     //Resources.load("Prefabs/truc") as GameObject;
@@ -23,12 +23,6 @@ public class EnemyStatus : MonoBehaviour
     {
         Effect = Resources.Load("Poison") as GameObject;
         healthPoint = healthPointMax;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void SetPoisoned(bool status)
