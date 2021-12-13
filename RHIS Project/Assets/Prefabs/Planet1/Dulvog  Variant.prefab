@@ -25,9 +25,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30daa9150b0f24a41a495cc9ce7e1faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 3190676977979407815, guid: 35bdc5193aac7f040bc28071f3cc0aff, type: 3}
   poisoned: 0
   healthPointMax: 100
+  healthPoint: 0
   slower: 0
   BasicDamage: 10
   FireDamage: 5
@@ -102,10 +102,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2050734606778957080, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2050734606778957080, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3917057408042397793, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6809031523765578874, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
