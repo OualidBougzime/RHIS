@@ -23,6 +23,6 @@ public class AmmoCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = Player.myWeapon.GetComponent<Weapon>().AmmoInMagazine + "/" + Player.myWeapon.GetComponent<Weapon>().TotalAmmo;
+        text.text = "Munitions: "+Player.myWeapon.GetComponent<Weapon>().AmmoInMagazine + "/" + Player.myWeapon.GetComponent<Weapon>().TotalAmmo;
     }
 }
