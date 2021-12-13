@@ -79,6 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poisoned: 0
   healthPointMax: 20
+  healthPoint: 0
   slower: 0
   BasicDamage: 10
   FireDamage: 5
@@ -113,11 +114,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2224730868255605748, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2224730868255605748, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3504232877694087486, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_RootOrder
@@ -178,6 +179,10 @@ PrefabInstance:
     - target: {fileID: 6722169404153599122, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_Name
       value: Yurma Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6722169404153599122, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6722169404153599122, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_TagString
