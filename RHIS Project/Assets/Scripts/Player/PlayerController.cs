@@ -234,6 +234,7 @@ public class PlayerController : MonoBehaviour
     {
 		if (playerWeapon != null)
         {
+			anim.SetTrigger("fire");
 			playerWeapon.StartFire();
         }
     }
