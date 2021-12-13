@@ -51,12 +51,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2a457da4fd94a43b752945c9c4840c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerWeapon: {fileID: 0}
+  myWeapon: {fileID: 0}
   Projectile: {fileID: 3273783236791565369, guid: 12cb48f2517d6704a8d2403981bbc5e0, type: 3}
   Force: 2
   vitesse: 3
   anim: {fileID: -8783313783038965442}
   dashPossibility: 1000
+  dashCooldown: 1000
+  dashSpeed: 100
 --- !u!95 &-8783313783038965442
 Animator:
   serializedVersion: 4
@@ -170,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c09c1fd840228d4babe4dba011b5582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  range: 0.3
 --- !u!1001 &2956660527427459475
 PrefabInstance:
   m_ObjectHideFlags: 0

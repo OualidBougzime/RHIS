@@ -7,16 +7,13 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] int healthPointMax = 20;
     [SerializeField] int healthPoint;
 
+    private SceneLoader sceneLoader;
+
     // Start is called before the first frame update
     void Start()
     {
         healthPoint = healthPointMax;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        sceneLoader = gameObject.AddComponent<SceneLoader>();
     }
 
     public void GetDamage(int damage)
@@ -35,5 +32,6 @@ public class PlayerStatus : MonoBehaviour
     public void Death()
     {
         Destroy(gameObject);
+        sceneLoader.LoadGameOver();
     }
 }

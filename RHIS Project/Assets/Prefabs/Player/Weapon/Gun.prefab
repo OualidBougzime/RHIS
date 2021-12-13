@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7735887840921160955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3293359936115735547}
+  - component: {fileID: 427124130829831728}
+  m_Layer: 0
+  m_Name: Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3293359936115735547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7735887840921160955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &427124130829831728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7735887840921160955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 304cf5a907293174a8fc4da3a70bcf66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Gun
+  WeaponDamage: 5
+  WeaponBonus: 0
+  firingRate: 15
+  accuracyBonus: 0
+  rangeBonus: 0
+  shotSpeedBonus: 0
+  MagazineSize: 7
+  MaxAmmo: 32
+  Effect: 0
+  TotalAmmo: 32
+  AmmoInMagazine: 7
+  Force: 10
+  bullet: {fileID: 1515099517020521590, guid: 19f1fd0adaa7f364a85e1c0bdff7b6fc, type: 3}
+  fireStyle: {fileID: 4577222693167108141, guid: c6f39cffb7be801419c880172e0ad2ae, type: 3}

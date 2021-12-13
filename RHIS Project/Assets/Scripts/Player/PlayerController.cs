@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	public Weapon PlayerWeapon;
+	[SerializeField] public GameObject myWeapon;
+	private Weapon playerWeapon;
 	public GameObject Projectile;
 	public int Force;
     [SerializeField] private int vitesse = 1;
@@ -14,10 +15,12 @@ public class PlayerController : MonoBehaviour
     Vector3 rotationVector;
 	public Animator anim;
 	[SerializeField] int dashPossibility = 1000;
+	[SerializeField] int dashCooldown = 1000;
 
-
+	[SerializeField] private int dashSpeed = 100;
 	private Transform poisonCircle;
     private Rigidbody myRigidbody;
+	private Transform myTransform;
     private Vector3 speed;
 
 	private static PlayerController instance;
@@ -26,12 +29,14 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
 		ManageSingleton();
+        myRigidbody = GetComponent<Rigidbody>();
+		myTransform = GetComponent<Transform>();
+		poisonCircle = transform.GetChild(1).GetComponentInChildren<Transform>();
+		playerWeapon = myWeapon.GetComponent<Weapon>();
     }
     void Start()
     {
     	rotationVector = transform.rotation.eulerAngles;
-        myRigidbody = GetComponent<Rigidbody>();
-		poisonCircle = transform.GetChild(1).GetComponentInChildren<Transform>();
     }
 
 	private void ManageSingleton()
@@ -54,10 +59,27 @@ public class PlayerController : MonoBehaviour
     }
 
 	Vector3 cartesianToIsometric(Vector3 cartesian){
-		var isometric = new Vector3();
+		if (cartesian.x > 0 && cartesian.y > 0)
+        {
+			return new Vector3(cartesian.x, cartesian.x / 2);
+        }
+		else if (cartesian.x > 0 && cartesian.y < 0)
+        {
+			return new Vector3(-cartesian.y, cartesian.y / 2);
+		}
+		else if (cartesian.x < 0 && cartesian.y > 0)
+		{ 
+			return new Vector3 (-cartesian.y, cartesian.y/2);
+		}
+		else if (cartesian.x < 0 && cartesian.y < 0)
+		{
+			return new Vector3(cartesian.x, cartesian.x / 2);
+		}
+		/*var isometric = new Vector3();
 		isometric.x = cartesian.x - cartesian.y;
 		isometric.y = (cartesian.x + cartesian.y) / 2;
-		return isometric;
+		return isometric;*/
+		return cartesian;
 
 	}
 
@@ -89,7 +111,7 @@ public class PlayerController : MonoBehaviour
     	key = 'Z';
 		anim.SetTrigger("run");
         direction = 1;
-		rotation = -180;
+		//rotation = -180;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
 		poisonCircle.rotation = Quaternion.identity;
@@ -101,7 +123,7 @@ public class PlayerController : MonoBehaviour
     	key = 'S';
 		anim.SetTrigger("run");
         direction = -1;
-		rotation = 0;
+		//rotation = 0;
         rotationVector.y = rotation;
         transform.rotation = Quaternion.Euler(rotationVector);
 		poisonCircle.rotation = Quaternion.identity;
@@ -110,9 +132,10 @@ public class PlayerController : MonoBehaviour
     }
 
     void dash(){
-		if(dashPossibility == 1000){
+		if(dashPossibility >= dashCooldown)
+		{
 			anim.SetTrigger("dash");
-			var vitesseDash = 200;
+			/*var vitesseDash = 200;
 			if(key == 'Q'){
 				direction = -5;
 				transform.position = transform.position + cartesianToIsometric(new Vector3(vitesseDash * direction * Time.deltaTime/20, 0, 0));
@@ -131,7 +154,8 @@ public class PlayerController : MonoBehaviour
 			if(key == 'S'){
 				direction = -5;
 				transform.position = transform.position + cartesianToIsometric(new Vector3(0, vitesseDash * direction * Time.deltaTime/20, 0));
-			}
+			}*/
+			speed *= dashSpeed;
 			dashPossibility = 0;
 		}
     	
@@ -142,7 +166,7 @@ public class PlayerController : MonoBehaviour
 		anim.SetTrigger("idle");	
 	}
 
-	void fire()
+	/*void fire()
 	{
 		if (PlayerWeapon != null && PlayerWeapon.AmmoInMagazine != 0)
 		{
@@ -204,13 +228,30 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 		
+	}*/
+
+	public void StartFire()
+    {
+		if (playerWeapon != null)
+        {
+			anim.SetTrigger("fire");
+			playerWeapon.StartFire();
+        }
+    }
+
+	public void StopFire()
+    {
+		if (playerWeapon != null)
+		{
+			StartCoroutine(playerWeapon.StopFire());
+		}
 	}
 
 	void reload()
 	{
-		if (PlayerWeapon != null)
+		if (playerWeapon != null)
 		{
-			PlayerWeapon.ReloadWeapon();
+			playerWeapon.Reload();
 		}
 	}
 
@@ -218,10 +259,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(dashPossibility<1000)
+		if(dashPossibility<dashCooldown)
 			dashPossibility+=1;
         speed = new Vector3(0, 0);
-    	if(Input.anyKey){
+
+		if (Input.GetButtonUp("Fire1"))
+		{
+			StopFire();
+		}
+
+		if (Input.anyKey){
 			if(Input.GetKey(KeyCode.Q)){
     		goLeft();
     		}
@@ -242,7 +289,7 @@ public class PlayerController : MonoBehaviour
 				reload();
 			}
 			if(Input.GetButtonDown("Fire1")){
-				fire();
+				StartFire();
 			}
 		}else
 		{

@@ -46,16 +46,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: MainWeapon
-  FiringRate: 12
   WeaponDamage: 5
-  Accuracy: 10
   WeaponBonus: 0
+  firingRate: 15
+  accuracyBonus: 0
+  rangeBonus: 0
+  shotSpeedBonus: 0
   MagazineSize: 7
   MaxAmmo: 32
   Effect: 0
   TotalAmmo: 32
   AmmoInMagazine: 7
   Force: 10
+  bullet: {fileID: 0}
+  fireStyle: {fileID: 0}
 --- !u!50 &6985164286193438639
 Rigidbody2D:
   serializedVersion: 4

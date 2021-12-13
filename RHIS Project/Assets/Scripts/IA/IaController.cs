@@ -16,6 +16,9 @@ public class IaController : MonoBehaviour
     [SerializeField] bool idling;
     [SerializeField] int damage;
 
+    [SerializeField] int attackPossibility = 1000;
+    [SerializeField] int attackCooldown = 1000;
+
     private Renderer myRenderer;
     private Canvas myCanvas;
 
@@ -34,7 +37,10 @@ public class IaController : MonoBehaviour
     }
 	void Update () 
     {
-        
+        if (attackPossibility < attackCooldown)
+        {
+            attackPossibility++;
+        }
 
         if(idling == false)
         {
@@ -45,7 +51,11 @@ public class IaController : MonoBehaviour
                     moveToAttack(target);
                 }else
                 {
-                    attack(target);
+                    if (attackPossibility >= attackCooldown)
+                    {
+                        attack(target);
+                        attackPossibility = 0;
+                    }
                 }
             }
             else
