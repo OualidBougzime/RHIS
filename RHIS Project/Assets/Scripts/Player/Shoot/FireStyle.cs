@@ -5,6 +5,7 @@ using UnityEngine;
 public class FireStyle : MonoBehaviour
 {
     private Transform myTransform;
+    private WeaponEffects effect;
 
     [SerializeField] private int nbrBullets;
     [SerializeField] [Range(0, 100)] private int accuracy;
@@ -34,6 +35,7 @@ public class FireStyle : MonoBehaviour
             }
 
             Bullet bulletInstance = instance.GetComponent<Bullet>();
+            bulletInstance.SetEffect(effect);
             if (bulletInstance != null)
             {
                 bulletInstance.SetDamage(weapon.GetDamage() + damage);
@@ -43,5 +45,10 @@ public class FireStyle : MonoBehaviour
 
 
         }
+    }
+
+    public void SetEffect(WeaponEffects effect)
+    {
+        this.effect = effect;
     }
 }

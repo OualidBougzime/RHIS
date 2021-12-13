@@ -2,16 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponEffect
-{
-    DEFAULT,
-    POISON,
-    SUPER_POISON,
-    FIRE,
-    ICE,
-    RAGE
-}
-
 public class Weapon : MonoBehaviour
 {
     [SerializeField] public string Name;
@@ -27,7 +17,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] public int MagazineSize;
     [SerializeField] public int MaxAmmo;
 
-    [SerializeField] public WeaponEffect Effect;
+    [SerializeField] public WeaponEffects Effect;
 
 
     public int TotalAmmo;
@@ -48,6 +38,8 @@ public class Weapon : MonoBehaviour
         myTransform = GetComponent<Transform>();
         fire = true;
         reload = false;
+
+        fireStyle.SetEffect(Effect);
     }
 
 
