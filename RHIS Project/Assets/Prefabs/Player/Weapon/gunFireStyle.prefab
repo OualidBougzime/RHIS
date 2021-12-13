@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nbrBullets: 1
   accuracy: 94
-  damage: 3
-  range: 100
-  shotSpeed: 10
+  damage: 6
+  range: 30
+  shotSpeed: 50

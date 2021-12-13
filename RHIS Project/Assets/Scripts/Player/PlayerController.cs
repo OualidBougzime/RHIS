@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
     void dash(){
 		if(dashPossibility >= dashCooldown)
 		{
-			anim.SetTrigger("dash");
+			//anim.SetTrigger("dash");
 			/*var vitesseDash = 200;
 			if(key == 'Q'){
 				direction = -5;

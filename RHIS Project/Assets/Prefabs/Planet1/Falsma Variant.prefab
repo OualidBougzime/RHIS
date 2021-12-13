@@ -27,6 +27,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poisoned: 0
   healthPointMax: 20
+  healthPoint: 0
   slower: 0
   BasicDamage: 10
   FireDamage: 5
@@ -118,6 +119,10 @@ PrefabInstance:
     - target: {fileID: 6002047464695311405, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: idling
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002047464695311405, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: Vitesse
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7257016177419698565, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_AnchorMax.x
