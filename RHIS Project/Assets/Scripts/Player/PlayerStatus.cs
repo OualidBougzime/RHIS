@@ -34,4 +34,14 @@ public class PlayerStatus : MonoBehaviour
         Destroy(gameObject);
         sceneLoader.LoadGameOver();
     }
+
+    public int GetHealth()
+    {
+        return healthPoint;
+    }
+
+    public int GetHealthMax()
+    {
+        return healthPointMax;
+    }
 }
