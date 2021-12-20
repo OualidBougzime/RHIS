@@ -21,7 +21,7 @@ public class PlayerStatus : MonoBehaviour
         if (this.healthPoint > damage)
         {
             healthPoint -= damage;
-            GetComponentInChildren<HealthBarBehaviour>().setHealth(healthPoint, healthPointMax);
+            //GetComponentInChildren<HealthBarBehaviour>().setHealth(healthPoint, healthPointMax);
         }
         else
         {

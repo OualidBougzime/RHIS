@@ -14,6 +14,7 @@ public enum WeaponEffect
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] Effect effect;
     [SerializeField] public string Name;
     [SerializeField] public int WeaponBonus;
 

@@ -194,8 +194,27 @@ PrefabInstance:
       propertyPath: PlayerWeapon
       value: 
       objectReference: {fileID: -4672096289783657316, guid: 7bf97e36b99ea4c4491a0553c0db859d, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6711191496927450234, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+--- !u!1 &4580296 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9066995077249101615, guid: 5603b9c525487446e870f1f6590ceda6, type: 3}
+  m_PrefabInstance: {fileID: 4580295}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &4580297
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4580296}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.50000006
+  m_Center: {x: 0.0000038146973, y: 0, z: 0}
 --- !u!1001 &1271904601
 PrefabInstance:
   m_ObjectHideFlags: 0

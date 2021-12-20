@@ -44,10 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304cf5a907293174a8fc4da3a70bcf66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effect: {fileID: 0}
   Name: Gun
-  WeaponDamage: 5
   WeaponBonus: 0
   firingRate: 15
+  reloadTime: 0
+  damageBonus: 0
   accuracyBonus: 0
   rangeBonus: 0
   shotSpeedBonus: 0
@@ -57,5 +59,5 @@ MonoBehaviour:
   TotalAmmo: 32
   AmmoInMagazine: 7
   Force: 10
-  bullet: {fileID: 1515099517020521590, guid: 19f1fd0adaa7f364a85e1c0bdff7b6fc, type: 3}
+  bullet: {fileID: 1515099517020521590, guid: 39f5b39c146d54d4a8e97a9907a1a412, type: 3}
   fireStyle: {fileID: 4577222693167108141, guid: c6f39cffb7be801419c880172e0ad2ae, type: 3}

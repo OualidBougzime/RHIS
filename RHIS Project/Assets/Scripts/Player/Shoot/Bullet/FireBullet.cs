@@ -2,21 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class FireBullet : Bullet
 {
-    private int damage;
 
-    public void Hit()
-    {
-        Destroy(gameObject);
-    }
-
-
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemies"))
         {
             other.GetComponent<EnemyStatus>().GetDamage(damage);
+            other.GetComponent<EnemyStatus>().Burning();
             Hit();
         }
         else if (!other.CompareTag("Water") && !other.CompareTag("Player"))
@@ -25,12 +19,4 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void SetDamage(int damage)
-    {
-        this.damage = damage;
-    }
-    public int GetDamage()
-    {
-        return damage;
-    }
 }

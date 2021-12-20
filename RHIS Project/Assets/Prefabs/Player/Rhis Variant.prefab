@@ -1,5 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &288868526343551508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9066995077249101615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c09c1fd840228d4babe4dba011b5582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0.3
+--- !u!135 &6711191496927450234
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9066995077249101615}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.50000006
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3340162758747541822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -165,10 +191,16 @@ PrefabInstance:
       propertyPath: AmmoInMagazine
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 695508464, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
 --- !u!4 &340039328165723730 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3988229903595656698, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
+  m_PrefabInstance: {fileID: 3738275766431001512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9066995077249101615 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5635527035703510151, guid: 4b6ff517d4ced4ffda98f15414add78d, type: 3}
   m_PrefabInstance: {fileID: 3738275766431001512}
   m_PrefabAsset: {fileID: 0}

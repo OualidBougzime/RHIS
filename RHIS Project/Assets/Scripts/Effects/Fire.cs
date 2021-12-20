@@ -15,7 +15,7 @@ public class Fire : Effect
     protected override void Update()
     {
               transform.position = transform.parent.position;
-                sprite.color = new Color(1, 0, 1, 1);
+               // sprite.color = new Color(1, 0, 1, 1);
     }
 
 }

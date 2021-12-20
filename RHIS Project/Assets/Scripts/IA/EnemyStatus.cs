@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyStatus : MonoBehaviour
 {
-    private GameObject Effect;
+    private GameObject EffectAspect;
     [SerializeField] bool poisoned = false;
     [SerializeField] int healthPointMax = 20;
     [SerializeField] int healthPoint;
@@ -21,7 +21,7 @@ public class EnemyStatus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Effect = Resources.Load("Poison") as GameObject;
+        EffectAspect = Resources.Load("Poison") as GameObject;
         healthPoint = healthPointMax;
     }
 
@@ -57,8 +57,8 @@ public class EnemyStatus : MonoBehaviour
 
     public void Poison()
     {
-        Coroutine poisonCoroutine = StartCoroutine(PoisonDamage(BasicDamage));
-        GameObject Instance = Instantiate(Effect, transform);
+        Coroutine poisonCoroutine = StartCoroutine(PoisonDamage(BasicDamage, EffectAspect));
+        GameObject Instance = Instantiate(EffectAspect, transform);
 
         
 
@@ -66,54 +66,56 @@ public class EnemyStatus : MonoBehaviour
 
     public void Burning()
     {
-        Effect = Resources.Load("Fire") as GameObject;
-        Coroutine poisonCoroutine = StartCoroutine(PoisonDamage(FireDamage));
-        GameObject Instance = Instantiate(Effect, transform);
+        EffectAspect = Resources.Load("Fire") as GameObject;
+        Coroutine poisonCoroutine = StartCoroutine(PoisonDamage(FireDamage, EffectAspect));
+        GameObject Instance = Instantiate(EffectAspect, transform);
     }
 
     public void Freeze()
     {
-        Effect = Resources.Load("Ice") as GameObject;
-        Coroutine poisonCoroutine = StartCoroutine(PoisonDamage(IceDamage));
+        EffectAspect = Resources.Load("Ice") as GameObject;
+        Coroutine poisonCoroutine = StartCoroutine(PoisonDamage(IceDamage, EffectAspect));
         gameObject.GetComponent<IaController>().Vitesse = gameObject.GetComponent<IaController>().Vitesse - slower;
-        GameObject Instance = Instantiate(Effect, transform);
+        GameObject Instance = Instantiate(EffectAspect, transform);
     }
 
     public void SuperPoison()
     {
-        Effect = Resources.Load("SuperPoison") as GameObject;
-        Coroutine poisonCoroutine = StartCoroutine(PoisonDamage(SuperDamage));
-        GameObject Instance = Instantiate(Effect, transform);
+        EffectAspect = Resources.Load("SuperPoison") as GameObject;
+        Coroutine poisonCoroutine = StartCoroutine(PoisonDamage(SuperDamage, EffectAspect));
+        GameObject Instance = Instantiate(EffectAspect, transform);
     }
 
     public void Rage()
     {
-        Effect = Resources.Load("Rage") as GameObject;
+        EffectAspect = Resources.Load("Rage") as GameObject;
         this.GetComponent<IaController>().SetTarget("Ennemy");
-        GameObject Instance = Instantiate(Effect, transform);
+        GameObject Instance = Instantiate(EffectAspect, transform);
     }
 
 
 
-    IEnumerator PoisonDamage(int damage)
+    IEnumerator PoisonDamage(int damage, GameObject EffectAspect)
     {
+        GameObject Instance = Instantiate(EffectAspect, transform);
         int timePoisoned = 0;
-        while (timePoisoned < 20)
+        while (timePoisoned < 5)
         {
             GetDamage(damage);
 
-            float timeToNextDamage = 5;
+            float timeToNextDamage = 1;
 
-            timePoisoned += 5;
+            timePoisoned += 1;
+
+            Debug.Log("damage");
 
             /*audioPlayer.PlayHurtingClip();*/
 
             yield return new WaitForSeconds(timeToNextDamage);
         }
-        if(timePoisoned >= 20)
+        if(timePoisoned >= 5)
         {
             poisoned = false;
-            GetComponent<Effect>().Destroy();
         }
     }
 

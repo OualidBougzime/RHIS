@@ -6,12 +6,12 @@ public class RhisPoison : MonoBehaviour
 {
     [SerializeField] private float range = 0.3f;
 
-    private Transform poisonCircle;
+    //private Transform poisonCircle;
     // Start is called before the first frame update
 
     private void Awake()
     {
-        poisonCircle = transform.GetChild(1).GetComponentInChildren<Transform>();
+        //poisonCircle = transform.GetChild(1).GetComponentInChildren<Transform>();
     }
     protected virtual void Start()
     {
@@ -20,7 +20,7 @@ public class RhisPoison : MonoBehaviour
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    /*protected virtual void Update()
     {
         Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, range);
 
@@ -35,6 +35,19 @@ public class RhisPoison : MonoBehaviour
                     collider.GetComponentInParent<EnemyStatus>().SetPoisoned(true);
                     collider.GetComponent<EnemyStatus>().Poison();
                 }
+            }
+        }
+    }*/
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemies"))
+        {
+            bool isPoisoned = other.GetComponent<EnemyStatus>().GetPoisoned();
+            if (isPoisoned == false)
+            {
+                other.GetComponent<EnemyStatus>().SetPoisoned(true);
+                other.GetComponent<EnemyStatus>().Poison();
             }
         }
     }
