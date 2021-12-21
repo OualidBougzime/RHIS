@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2312212808891142138, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3287430917894077264, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_Name
       value: Rihar Variant
@@ -186,7 +190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6631817938723676036, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8512210049437078269, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -196,7 +200,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5922597898758009830, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7616bcb7ecb954a02a976d3df8a6a12d, type: 3}
 --- !u!1 &3569420482474051548 stripped
 GameObject:

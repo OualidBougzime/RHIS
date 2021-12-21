@@ -33,9 +33,10 @@ public class IaController : MonoBehaviour
         Offset = new Vector2(transform.position.x - 10 , transform.position.x + 10); // initialisation du champ d'allez retour en fonction de la position initiale de l'IA
         rotationVector = transform.rotation.eulerAngles;
 
-        Disable();
+        //Disable(); //mise en commentaire pour un executable jouable
+        Enable();
     }
-	void Update () 
+    void Update () 
     {
         if (attackPossibility < attackCooldown)
         {
@@ -74,19 +75,17 @@ public class IaController : MonoBehaviour
         
     }
 	
-    public void Disable()   //Met l'ennemi en pause jusqu'à l'arriver du joueur
+    public void Disable()   //Met l'ennemi en pause jusqu'à l'arrivée du joueur
     {
         if (myRenderer == null) return;
         idling = true;
         myRenderer.enabled = false;
-        myCanvas.enabled = false;
     }
 
     public void Enable()   //Active l'ennemi
     {
         if (myRenderer == null) return;
         myRenderer.enabled = true;
-        myCanvas.enabled = true;
         idling = false;
     }
 

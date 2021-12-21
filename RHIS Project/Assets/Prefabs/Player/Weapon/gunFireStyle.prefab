@@ -47,5 +47,5 @@ MonoBehaviour:
   nbrBullets: 1
   accuracy: 94
   damage: 3
-  range: 100
-  shotSpeed: 10
+  range: 40
+  shotSpeed: 15

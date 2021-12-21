@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 906557431432830366, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2191640507547301577, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_RootOrder
@@ -118,11 +118,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311405, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: damage
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6002047464695311405, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: idling
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002047464695311405, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: attackCooldown
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002047464695311405, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: attackPossibility
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 7257016177419698565, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
       propertyPath: m_AnchorMax.x
@@ -132,7 +140,12 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8109557023620451808, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 192815864646038012, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f532eca5a15b4461ab908308235a8ce0, type: 3}
 --- !u!1 &2919072558546150103 stripped
 GameObject:

@@ -40,7 +40,7 @@ public class EnemyStatus : MonoBehaviour
         if(this.healthPoint > damage)
         {
             healthPoint -= damage;
-            GetComponentInChildren<HealthBarBehaviour>().setHealth(healthPoint, healthPointMax);
+            //GetComponentInChildren<HealthBarBehaviour>().setHealth(healthPoint, healthPointMax);
         }
         else
         {
@@ -113,7 +113,7 @@ public class EnemyStatus : MonoBehaviour
         if(timePoisoned >= 20)
         {
             poisoned = false;
-            GetComponent<Effect>().Destroy();
+            //GetComponent<Effect>().Destroy();
         }
     }
 

@@ -21,6 +21,6 @@ public class PlayerHealthBar : MonoBehaviour
     void Update()
     {
         health = script.GetHealth();
-        GetComponent<Image>().fillAmount = health / healthMax;
+        GetComponent<Image>().fillAmount = health / (float)healthMax;
     }
 }

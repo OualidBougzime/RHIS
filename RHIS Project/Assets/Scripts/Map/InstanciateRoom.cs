@@ -95,6 +95,16 @@ public class InstanciateRoom : MonoBehaviour
 
         EnemiesCounter counter = new(enemies.Count, doors, ia);
 
+        /*for (int i = 0; i<enemies.Count; ++i)
+        {
+            enemies[i].SetCounter(counter);
+        }
+
+        for (int i = 0; i < doors.Count; ++i)
+        {
+            doors[i].SetCounter(counter);
+        }*/
+
         foreach (EnemyStatus e in enemies)
         {
             e.SetCounter(counter);
@@ -302,7 +312,6 @@ public class InstanciateRoom : MonoBehaviour
             default:
                 if (!firstRoom)
                 {
-                    Debug.Log("true");
                     firstRoom = true;
                     return true;
                 }

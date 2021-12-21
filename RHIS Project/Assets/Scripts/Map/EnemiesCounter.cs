@@ -14,7 +14,7 @@ public class EnemiesCounter
         this.doors = doors;
         this.ennemies = enemies;
         OpenDoors(true);
-        DisableEnemies();
+        //DisableEnemies(); //mise en commentaire pour un executable jouable
     }
 
     private void DisableEnemies()

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 359061902994862167}
   - component: {fileID: 7987391329954869129}
   - component: {fileID: 3313262711240011138}
-  - component: {fileID: 1780917105307723365}
+  - component: {fileID: -9120436247425530148}
   m_Layer: 7
   m_Name: DoorObject
   m_TagString: Backdrops
@@ -41,7 +41,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8357015236772981314}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -94,13 +94,13 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8357015236772981314}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.19433594
   m_Height: 0.6542969
   m_Direction: 1
   m_Center: {x: 0, y: 0.13085938, z: 0}
---- !u!114 &1780917105307723365
+--- !u!114 &-9120436247425530148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

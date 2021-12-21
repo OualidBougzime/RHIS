@@ -11,8 +11,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.29296875
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.0435704
+  m_Center: {x: -0.20120461, y: -0.025132397, z: -2.3543334e-16}
 --- !u!114 &822517740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisoned: 0
-  healthPointMax: 100
+  healthPointMax: 50
   healthPoint: 0
   slower: 0
   BasicDamage: 10
@@ -40,13 +40,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5280806500972611668, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
+      propertyPath: m_Mass
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: -5280806500972611668, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
+      propertyPath: m_Constraints
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312145, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_Name
       value: Dulvog  Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312145, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_TagString
-      value: Boss
+      value: Enemies
       objectReference: {fileID: 0}
     - target: {fileID: 1250633769277312146, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_RootOrder
@@ -97,8 +105,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 1edb7722a0578448ababe26a00fadc5b, type: 2}
     - target: {fileID: 1250633769277312149, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
+      propertyPath: damage
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250633769277312149, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: idling
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250633769277312149, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
+      propertyPath: attackCooldown
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250633769277312149, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
+      propertyPath: attackPossibility
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2050734606778957080, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_AnchorMax.x
@@ -110,6 +130,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3917057408042397793, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5350976738716114975, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6809031523765578874, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
@@ -120,7 +144,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4063820102111321091, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7d5d05601450b49fe92c96784dfa8e40, type: 3}
 --- !u!1 &6197305469822166964 stripped
 GameObject:

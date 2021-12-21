@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 420386424839550552}
     - target: {fileID: -3627079700713782633, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: damage
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -3627079700713782633, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: idling
@@ -168,6 +168,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 59e19f08b0e824719b5479359b56e33e, type: 2}
+    - target: {fileID: 5253453690699603699, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6689238159062717078, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -182,13 +186,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6722169404153599122, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6722169404153599122, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
       propertyPath: m_TagString
       value: Enemies
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4237867906567758575, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5a21fca9d6b3c442db47dc346428235a, type: 3}
 --- !u!1 &7732438922532646343 stripped
 GameObject:

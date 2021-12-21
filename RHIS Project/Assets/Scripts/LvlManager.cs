@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LvlManager : MonoBehaviour
 {
-    private int nbrLvl = 3;
+    private int nbrLvl = 3 + 1;
 
     internal void LoadNextLvl()
     {
