@@ -33,8 +33,8 @@ public class IaController : MonoBehaviour
         Offset = new Vector2(transform.position.x - 10 , transform.position.x + 10); // initialisation du champ d'allez retour en fonction de la position initiale de l'IA
         rotationVector = transform.rotation.eulerAngles;
 
-        //Disable(); //mise en commentaire pour un executable jouable
-        Enable();
+        Disable(); //mise en commentaire pour un executable jouable
+        //Enable();
     }
     void Update () 
     {
